@@ -1,0 +1,87 @@
+﻿@model IEnumerable<LHRLA.DAL.tbl_Tags_Setup>
+
+@{
+    ViewBag.Title = "CaseTagList";
+}
+@section pagelevelcss{
+    <link href="~/assets/css/jquery.dataTables.min.css" rel="stylesheet" />
+<style type="text/css">
+    .ellipsis {
+        max-width: 40px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+</style>
+}
+
+@section actionsMain{
+    <a href="Index" id="grid" class="btn btn-success m-btn m-btn--icon m-btn--wide btnOpenPopUp" _id="0">
+        <span>
+            <i class="la la-plus-circle"></i>
+            <span>
+                Case Tag
+            </span>
+        </span>
+    </a>
+}
+
+@section scripts{
+    <script src="~/assets/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $('.datatableCustom').DataTable();
+    </script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="m-portlet m-portlet--tab">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            List
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <table class="table m-table m-table--head-separator-primary verticalAlignMiddle datatableCustom">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Value</th>
+                            <th>Description</th>
+
+
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int a = 0;}
+                        @foreach (var item in Model)
+                        {
+                            a++;
+                            <tr>
+                                <td>@Html.Raw(a)</td>
+                                <td  class="ellipsis">@item.Tag_Value</td>
+                                <td  class="ellipsis">@item.Tag_Description</td>
+
+
+                                <td>
+                                    <a href="@Url.Action("Index/"+item.ID+"","CaseTags")" class="cstm-editedbtn"> <i class="la la-edit"></i>  Edit</a>
+
+                                </td>
+                            </tr>
+
+                        
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

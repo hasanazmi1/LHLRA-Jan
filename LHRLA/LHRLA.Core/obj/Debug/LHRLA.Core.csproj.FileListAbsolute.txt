@@ -1,0 +1,36 @@
+C:\Users\Danish\Source\Repos\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.Core.dll
+C:\Users\Danish\Source\Repos\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.Core.pdb
+C:\Users\Danish\Source\Repos\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.csprojResolveAssemblyReference.cache
+C:\Users\Danish\Source\Repos\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.dll
+C:\Users\Danish\Source\Repos\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.pdb
+C:\Users\hammad\Documents\GitHub\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.Core.dll
+C:\Users\hammad\Documents\GitHub\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.Core.pdb
+C:\Users\hammad\Documents\GitHub\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.DAL.dll
+C:\Users\hammad\Documents\GitHub\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\EntityFramework.dll
+C:\Users\hammad\Documents\GitHub\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.DAL.pdb
+C:\Users\hammad\Documents\GitHub\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\EntityFramework.xml
+C:\Users\hammad\Documents\GitHub\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.csprojResolveAssemblyReference.cache
+C:\Users\hammad\Documents\GitHub\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.dll
+C:\Users\hammad\Documents\GitHub\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.pdb
+D:\Git Hub\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.Core.dll
+D:\Git Hub\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.Core.pdb
+D:\Git Hub\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\EntityFramework.dll
+D:\Git Hub\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.DAL.dll
+D:\Git Hub\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.DAL.pdb
+D:\Git Hub\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\EntityFramework.xml
+D:\Git Hub\LHRLA\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.csprojResolveAssemblyReference.cache
+D:\Git Hub\LHRLA\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.dll
+D:\Git Hub\LHRLA\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.pdb
+D:\Git Hub\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Git Hub\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Git Hub\1-5-2019\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.Core.dll
+D:\Git Hub\1-5-2019\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.Core.pdb
+D:\Git Hub\1-5-2019\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\EntityFramework.dll
+D:\Git Hub\1-5-2019\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Git Hub\1-5-2019\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.DAL.dll
+D:\Git Hub\1-5-2019\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\LHRLA.DAL.pdb
+D:\Git Hub\1-5-2019\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\EntityFramework.xml
+D:\Git Hub\1-5-2019\LHRLA\lhrla-web\LHRLA\LHRLA.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Git Hub\1-5-2019\LHRLA\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.csprojResolveAssemblyReference.cache
+D:\Git Hub\1-5-2019\LHRLA\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.dll
+D:\Git Hub\1-5-2019\LHRLA\lhrla-web\LHRLA\LHRLA.Core\obj\Debug\LHRLA.Core.pdb

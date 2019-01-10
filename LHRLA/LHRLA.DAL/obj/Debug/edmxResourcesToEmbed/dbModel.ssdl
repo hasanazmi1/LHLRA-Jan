@@ -1,0 +1,907 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vt_LHRLAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Call_Operators">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Calls">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Caller_Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Caller_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Operator_ID" Type="int" />
+    <Property Name="Call_Start_DateTime" Type="datetime" />
+    <Property Name="Call_End_DateTime" Type="datetime" />
+    <Property Name="Call_Duration_In_Mins" Type="int" />
+    <Property Name="Caller_Longitude" Type="nvarchar" MaxLength="30" />
+    <Property Name="Caller_Latitude" Type="nvarchar" MaxLength="30" />
+    <Property Name="City_ID" Type="int" />
+    <Property Name="Is_Received" Type="bit" />
+    <Property Name="Operator_Descp" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Case">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Case_Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Case_DateTime" Type="datetime" />
+    <Property Name="Case_Type_Id" Type="int" />
+    <Property Name="Summary" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Case_Registeration_Type_Id" Type="int" />
+    <Property Name="Attachment_Count" Type="int" />
+    <Property Name="Is_Submitted" Type="bit" />
+    <Property Name="Current_Status_ID" Type="int" />
+    <Property Name="Call_ID" Type="int" />
+    <Property Name="Linked_Case_ID" Type="int" />
+    <Property Name="Case_Reference_Person" Type="nvarchar" MaxLength="100" />
+    <Property Name="Approval_Level" Type="int" />
+    <Property Name="Client_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Client_Contact" Type="nvarchar" MaxLength="100" />
+    <Property Name="Client_CNIC" Type="nvarchar" MaxLength="100" />
+    <Property Name="Followup_Date" Type="datetime" />
+    <Property Name="Branch_ID" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="CounselorId" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Data">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Case_Field_ID" Type="int" />
+    <Property Name="Case_ID" Type="int" />
+    <Property Name="Field_Value" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Data_temp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CaseHistoryLogID" Type="int" />
+    <Property Name="Case_Field_ID" Type="int" />
+    <Property Name="Case_ID" Type="int" />
+    <Property Name="Field_Value" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Fields">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Field_Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Is_Active" Type="bit" />
+    <Property Name="Sequence_No" Type="int" />
+    <Property Name="Is_Mandatory" Type="bit" />
+    <Property Name="Is_Visible_On_App" Type="bit" />
+    <Property Name="Case_Field_Section_ID" Type="int" />
+    <Property Name="Is_Encrypted" Type="bit" />
+    <Property Name="Is_Hidden" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Fields_Options">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Case_Field_ID" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Fields_Section">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Is_Active" Type="bit" />
+    <Property Name="Sequence_No" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Case_History_Log">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Case_ID" Type="int" />
+    <Property Name="Old_Data" Type="nvarchar(max)" />
+    <Property Name="New_Data" Type="nvarchar(max)" />
+    <Property Name="Approval1_User" Type="int" />
+    <Property Name="Approval1_Datetime" Type="datetime" />
+    <Property Name="Approval1_Comments" Type="nvarchar(max)" />
+    <Property Name="Approval2_User" Type="int" />
+    <Property Name="Approval2_Datetime" Type="datetime" />
+    <Property Name="Approval2_Comments" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Referral">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Case_ID" Type="int" />
+    <Property Name="Agency_ID" Type="int" />
+    <Property Name="Agency_Role_Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Registeration_Types">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Status">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Sub_Types">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Tags">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Case_ID" Type="int" Nullable="false" />
+    <Property Name="Tag_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_case_temp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Case_ID" Type="int" />
+    <Property Name="CaseHistoryLogID" Type="int" />
+    <Property Name="Case_Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Case_DateTime" Type="datetime" />
+    <Property Name="Case_Type_Id" Type="int" />
+    <Property Name="Summary" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Case_Registeration_Type_Id" Type="int" />
+    <Property Name="Attachment_Count" Type="int" />
+    <Property Name="Is_Submitted" Type="bit" />
+    <Property Name="Current_Status_ID" Type="int" />
+    <Property Name="Call_ID" Type="int" />
+    <Property Name="Linked_Case_ID" Type="int" />
+    <Property Name="Case_Reference_Person" Type="nvarchar" MaxLength="100" />
+    <Property Name="Approval_Level" Type="int" />
+    <Property Name="Client_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Client_Contact" Type="nvarchar" MaxLength="100" />
+    <Property Name="Client_CNIC" Type="nvarchar" MaxLength="100" />
+    <Property Name="Followup_Date" Type="datetime" />
+    <Property Name="Branch_ID" Type="int" />
+    <Property Name="CounselorId" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Types">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="250" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Is_Active" Type="bit" />
+    <Property Name="Case_Sub_Type_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Longitude" Type="nvarchar" MaxLength="100" />
+    <Property Name="Latitude" Type="nvarchar" MaxLength="100" />
+    <Property Name="Short_Code" Type="nvarchar" MaxLength="100" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Councelling_Sessions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Case_ID" Type="int" />
+    <Property Name="Counceller_ID" Type="int" />
+    <Property Name="Session_Duration_In_Mins" Type="int" />
+    <Property Name="Session_Datetime" Type="datetime" />
+    <Property Name="Session_Details" Type="nvarchar(max)" />
+    <Property Name="Is_Submitted" Type="bit" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Email_Setup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Email_Body" Type="nvarchar(max)" />
+    <Property Name="Is_Active" Type="bit" />
+    <Property Name="Email_Subject" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email_CC" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbl_Email_Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email_Setup_ID" Type="int" Nullable="false" />
+    <Property Name="User_ID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Meetings">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Start_Datetime" Type="datetime" />
+    <Property Name="End_Datetime" Type="datetime" />
+    <Property Name="Location_Descp" Type="nvarchar(max)" />
+    <Property Name="City_Id" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Followup_Notes" Type="nvarchar(max)" />
+    <Property Name="Participants_Details" Type="nvarchar(max)" />
+    <Property Name="Case_ID" Type="int" />
+    <Property Name="Meeting_Initiated_By" Type="nvarchar" MaxLength="100" />
+    <Property Name="Is_Active" Type="bit" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Pages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="URL" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Is_Active" Type="bit" />
+    <Property Name="Section_ID" Type="int" />
+    <Property Name="MenuDisplay" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Referral_Agency">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Contact_Details" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Role_Pages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role_ID" Type="int" Nullable="false" />
+    <Property Name="Page_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Section">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Tags_Setup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tag_Value" Type="nvarchar" MaxLength="500" />
+    <Property Name="Tag_Description" Type="nvarchar(max)" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="User_Password" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Role_ID" Type="int" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="City_ID" Type="int" />
+    <Property Name="Is_Active" Type="bit" />
+    <Property Name="Supervisor_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_User_Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_ID" Type="bigint" Nullable="false" />
+    <Property Name="Branch_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_UserLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Entity_Type" Type="nvarchar" MaxLength="100" />
+    <Property Name="Entity_ID" Type="int" />
+    <Property Name="Action_Timestamp" Type="datetime" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Action_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Action_User_ID" Type="int" />
+  </EntityType>
+  <Association Name="FK_tbl_Calls_tbl_City">
+    <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+    <End Role="tbl_Calls" Type="Self.tbl_Calls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Calls">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Data_tbl_Case_Fields">
+    <End Role="tbl_Case" Type="Self.tbl_Case" Multiplicity="0..1" />
+    <End Role="tbl_Case_Data" Type="Self.tbl_Case_Data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Data">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Data_tbl_Case_Fields1">
+    <End Role="tbl_Case_Fields" Type="Self.tbl_Case_Fields" Multiplicity="0..1" />
+    <End Role="tbl_Case_Data" Type="Self.tbl_Case_Data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Fields">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Data">
+        <PropertyRef Name="Case_Field_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Data_temp_tbl_Case">
+    <End Role="tbl_Case" Type="Self.tbl_Case" Multiplicity="0..1" />
+    <End Role="tbl_Case_Data_temp" Type="Self.tbl_Case_Data_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Data_temp">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Data_temp_tbl_Case_Fields">
+    <End Role="tbl_Case_Fields" Type="Self.tbl_Case_Fields" Multiplicity="0..1" />
+    <End Role="tbl_Case_Data_temp" Type="Self.tbl_Case_Data_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Fields">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Data_temp">
+        <PropertyRef Name="Case_Field_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Data_temp_tbl_Case_History_Log">
+    <End Role="tbl_Case_History_Log" Type="Self.tbl_Case_History_Log" Multiplicity="0..1" />
+    <End Role="tbl_Case_Data_temp" Type="Self.tbl_Case_Data_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_History_Log">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Data_temp">
+        <PropertyRef Name="CaseHistoryLogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Fields_Options_tbl_Case_Fields">
+    <End Role="tbl_Case_Fields" Type="Self.tbl_Case_Fields" Multiplicity="0..1" />
+    <End Role="tbl_Case_Fields_Options" Type="Self.tbl_Case_Fields_Options" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Fields">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Fields_Options">
+        <PropertyRef Name="Case_Field_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Fields_tbl_Case_Fields_Section">
+    <End Role="tbl_Case_Fields_Section" Type="Self.tbl_Case_Fields_Section" Multiplicity="0..1" />
+    <End Role="tbl_Case_Fields" Type="Self.tbl_Case_Fields" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Fields_Section">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Fields">
+        <PropertyRef Name="Case_Field_Section_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_History_Log_tbl_Case">
+    <End Role="tbl_Case" Type="Self.tbl_Case" Multiplicity="0..1" />
+    <End Role="tbl_Case_History_Log" Type="Self.tbl_Case_History_Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_History_Log">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Referral_tbl_Case">
+    <End Role="tbl_Case" Type="Self.tbl_Case" Multiplicity="0..1" />
+    <End Role="tbl_Case_Referral" Type="Self.tbl_Case_Referral" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Referral">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Tags_tbl_Case">
+    <End Role="tbl_Case" Type="Self.tbl_Case" Multiplicity="1" />
+    <End Role="tbl_Case_Tags" Type="Self.tbl_Case_Tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Tags">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Tags_tbl_Tags_Setup">
+    <End Role="tbl_Tags_Setup" Type="Self.tbl_Tags_Setup" Multiplicity="1" />
+    <End Role="tbl_Case_Tags" Type="Self.tbl_Case_Tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Tags_Setup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Tags">
+        <PropertyRef Name="Tag_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_tbl_Branch">
+    <End Role="tbl_Branch" Type="Self.tbl_Branch" Multiplicity="0..1" />
+    <End Role="tbl_Case" Type="Self.tbl_Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_tbl_Case_Types">
+    <End Role="tbl_Case_Types" Type="Self.tbl_Case_Types" Multiplicity="0..1" />
+    <End Role="tbl_Case" Type="Self.tbl_Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Types">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case">
+        <PropertyRef Name="Case_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_tbl_Case_Types1">
+    <End Role="tbl_Case_Registeration_Types" Type="Self.tbl_Case_Registeration_Types" Multiplicity="0..1" />
+    <End Role="tbl_Case" Type="Self.tbl_Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Registeration_Types">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case">
+        <PropertyRef Name="Case_Registeration_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_case_temp_tbl_Branch">
+    <End Role="tbl_Branch" Type="Self.tbl_Branch" Multiplicity="0..1" />
+    <End Role="tbl_case_temp" Type="Self.tbl_case_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_case_temp">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_case_temp_tbl_Case">
+    <End Role="tbl_Case" Type="Self.tbl_Case" Multiplicity="0..1" />
+    <End Role="tbl_case_temp" Type="Self.tbl_case_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_case_temp">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_case_temp_tbl_Case_History_Log">
+    <End Role="tbl_Case_History_Log" Type="Self.tbl_Case_History_Log" Multiplicity="0..1" />
+    <End Role="tbl_case_temp" Type="Self.tbl_case_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_History_Log">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_case_temp">
+        <PropertyRef Name="CaseHistoryLogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_case_temp_tbl_Case_Registeration_Types">
+    <End Role="tbl_Case_Registeration_Types" Type="Self.tbl_Case_Registeration_Types" Multiplicity="0..1" />
+    <End Role="tbl_case_temp" Type="Self.tbl_case_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Registeration_Types">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_case_temp">
+        <PropertyRef Name="Case_Registeration_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Types_tbl_Case_Sub_Types">
+    <End Role="tbl_Case_Sub_Types" Type="Self.tbl_Case_Sub_Types" Multiplicity="0..1" />
+    <End Role="tbl_Case_Types" Type="Self.tbl_Case_Types" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Sub_Types">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Types">
+        <PropertyRef Name="Case_Sub_Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Councelling_Sessions_tbl_Case">
+    <End Role="tbl_Case" Type="Self.tbl_Case" Multiplicity="0..1" />
+    <End Role="tbl_Councelling_Sessions" Type="Self.tbl_Councelling_Sessions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Councelling_Sessions">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Email_Users_tbl_Email_Setup">
+    <End Role="tbl_Email_Setup" Type="Self.tbl_Email_Setup" Multiplicity="1" />
+    <End Role="tbl_Email_Users" Type="Self.tbl_Email_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Email_Setup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Email_Users">
+        <PropertyRef Name="Email_Setup_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Email_Users_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_Email_Users" Type="Self.tbl_Email_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Email_Users">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Meetings_tbl_Case">
+    <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+    <End Role="tbl_Meetings" Type="Self.tbl_Meetings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Meetings">
+        <PropertyRef Name="City_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Pages_tbl_Section">
+    <End Role="tbl_Section" Type="Self.tbl_Section" Multiplicity="0..1" />
+    <End Role="tbl_Pages" Type="Self.tbl_Pages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Section">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Pages">
+        <PropertyRef Name="Section_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Role_Pages_tbl_Pages">
+    <End Role="tbl_Pages" Type="Self.tbl_Pages" Multiplicity="1" />
+    <End Role="tbl_Role_Pages" Type="Self.tbl_Role_Pages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Pages">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Role_Pages">
+        <PropertyRef Name="Page_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Role_Pages_tbl_Role">
+    <End Role="tbl_Role" Type="Self.tbl_Role" Multiplicity="1" />
+    <End Role="tbl_Role_Pages" Type="Self.tbl_Role_Pages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Role_Pages">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_User_Branch_tbl_Branch">
+    <End Role="tbl_Branch" Type="Self.tbl_Branch" Multiplicity="1" />
+    <End Role="tbl_User_Branch" Type="Self.tbl_User_Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_User_Branch">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_User_Branch_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_User_Branch" Type="Self.tbl_User_Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_User_Branch">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_User_tbl_Role">
+    <End Role="tbl_Role" Type="Self.tbl_Role" Multiplicity="0..1" />
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_User">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_User_tbl_User">
+    <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_User">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_AddUserLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EventName" Type="char" Mode="In" />
+    <Parameter Name="EntityName" Type="varchar" Mode="In" />
+    <Parameter Name="EntityID" Type="bigint" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="vt_LHRLAModelStoreContainer">
+    <EntitySet Name="tbl_Branch" EntityType="Self.tbl_Branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Call_Operators" EntityType="Self.tbl_Call_Operators" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Calls" EntityType="Self.tbl_Calls" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case" EntityType="Self.tbl_Case" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_Data" EntityType="Self.tbl_Case_Data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_Data_temp" EntityType="Self.tbl_Case_Data_temp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_Fields" EntityType="Self.tbl_Case_Fields" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_Fields_Options" EntityType="Self.tbl_Case_Fields_Options" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_Fields_Section" EntityType="Self.tbl_Case_Fields_Section" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_History_Log" EntityType="Self.tbl_Case_History_Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_Referral" EntityType="Self.tbl_Case_Referral" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_Registeration_Types" EntityType="Self.tbl_Case_Registeration_Types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_Status" EntityType="Self.tbl_Case_Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_Sub_Types" EntityType="Self.tbl_Case_Sub_Types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_Tags" EntityType="Self.tbl_Case_Tags" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_case_temp" EntityType="Self.tbl_case_temp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Case_Types" EntityType="Self.tbl_Case_Types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_City" EntityType="Self.tbl_City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Councelling_Sessions" EntityType="Self.tbl_Councelling_Sessions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Email_Setup" EntityType="Self.tbl_Email_Setup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Email_Users" EntityType="Self.tbl_Email_Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Meetings" EntityType="Self.tbl_Meetings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Pages" EntityType="Self.tbl_Pages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Referral_Agency" EntityType="Self.tbl_Referral_Agency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Role" EntityType="Self.tbl_Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Role_Pages" EntityType="Self.tbl_Role_Pages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Section" EntityType="Self.tbl_Section" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Tags_Setup" EntityType="Self.tbl_Tags_Setup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_User_Branch" EntityType="Self.tbl_User_Branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_UserLog" EntityType="Self.tbl_UserLog" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbl_Calls_tbl_City" Association="Self.FK_tbl_Calls_tbl_City">
+      <End Role="tbl_City" EntitySet="tbl_City" />
+      <End Role="tbl_Calls" EntitySet="tbl_Calls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Data_tbl_Case_Fields" Association="Self.FK_tbl_Case_Data_tbl_Case_Fields">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Case_Data" EntitySet="tbl_Case_Data" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Data_tbl_Case_Fields1" Association="Self.FK_tbl_Case_Data_tbl_Case_Fields1">
+      <End Role="tbl_Case_Fields" EntitySet="tbl_Case_Fields" />
+      <End Role="tbl_Case_Data" EntitySet="tbl_Case_Data" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Data_temp_tbl_Case" Association="Self.FK_tbl_Case_Data_temp_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Case_Data_temp" EntitySet="tbl_Case_Data_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Data_temp_tbl_Case_Fields" Association="Self.FK_tbl_Case_Data_temp_tbl_Case_Fields">
+      <End Role="tbl_Case_Fields" EntitySet="tbl_Case_Fields" />
+      <End Role="tbl_Case_Data_temp" EntitySet="tbl_Case_Data_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Data_temp_tbl_Case_History_Log" Association="Self.FK_tbl_Case_Data_temp_tbl_Case_History_Log">
+      <End Role="tbl_Case_History_Log" EntitySet="tbl_Case_History_Log" />
+      <End Role="tbl_Case_Data_temp" EntitySet="tbl_Case_Data_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Fields_Options_tbl_Case_Fields" Association="Self.FK_tbl_Case_Fields_Options_tbl_Case_Fields">
+      <End Role="tbl_Case_Fields" EntitySet="tbl_Case_Fields" />
+      <End Role="tbl_Case_Fields_Options" EntitySet="tbl_Case_Fields_Options" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Fields_tbl_Case_Fields_Section" Association="Self.FK_tbl_Case_Fields_tbl_Case_Fields_Section">
+      <End Role="tbl_Case_Fields_Section" EntitySet="tbl_Case_Fields_Section" />
+      <End Role="tbl_Case_Fields" EntitySet="tbl_Case_Fields" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_History_Log_tbl_Case" Association="Self.FK_tbl_Case_History_Log_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Case_History_Log" EntitySet="tbl_Case_History_Log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Referral_tbl_Case" Association="Self.FK_tbl_Case_Referral_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Case_Referral" EntitySet="tbl_Case_Referral" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Tags_tbl_Case" Association="Self.FK_tbl_Case_Tags_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Case_Tags" EntitySet="tbl_Case_Tags" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Tags_tbl_Tags_Setup" Association="Self.FK_tbl_Case_Tags_tbl_Tags_Setup">
+      <End Role="tbl_Tags_Setup" EntitySet="tbl_Tags_Setup" />
+      <End Role="tbl_Case_Tags" EntitySet="tbl_Case_Tags" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_tbl_Branch" Association="Self.FK_tbl_Case_tbl_Branch">
+      <End Role="tbl_Branch" EntitySet="tbl_Branch" />
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_tbl_Case_Types" Association="Self.FK_tbl_Case_tbl_Case_Types">
+      <End Role="tbl_Case_Types" EntitySet="tbl_Case_Types" />
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_tbl_Case_Types1" Association="Self.FK_tbl_Case_tbl_Case_Types1">
+      <End Role="tbl_Case_Registeration_Types" EntitySet="tbl_Case_Registeration_Types" />
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_case_temp_tbl_Branch" Association="Self.FK_tbl_case_temp_tbl_Branch">
+      <End Role="tbl_Branch" EntitySet="tbl_Branch" />
+      <End Role="tbl_case_temp" EntitySet="tbl_case_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_case_temp_tbl_Case" Association="Self.FK_tbl_case_temp_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_case_temp" EntitySet="tbl_case_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_case_temp_tbl_Case_History_Log" Association="Self.FK_tbl_case_temp_tbl_Case_History_Log">
+      <End Role="tbl_Case_History_Log" EntitySet="tbl_Case_History_Log" />
+      <End Role="tbl_case_temp" EntitySet="tbl_case_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_case_temp_tbl_Case_Registeration_Types" Association="Self.FK_tbl_case_temp_tbl_Case_Registeration_Types">
+      <End Role="tbl_Case_Registeration_Types" EntitySet="tbl_Case_Registeration_Types" />
+      <End Role="tbl_case_temp" EntitySet="tbl_case_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Types_tbl_Case_Sub_Types" Association="Self.FK_tbl_Case_Types_tbl_Case_Sub_Types">
+      <End Role="tbl_Case_Sub_Types" EntitySet="tbl_Case_Sub_Types" />
+      <End Role="tbl_Case_Types" EntitySet="tbl_Case_Types" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Councelling_Sessions_tbl_Case" Association="Self.FK_tbl_Councelling_Sessions_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Councelling_Sessions" EntitySet="tbl_Councelling_Sessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Email_Users_tbl_Email_Setup" Association="Self.FK_tbl_Email_Users_tbl_Email_Setup">
+      <End Role="tbl_Email_Setup" EntitySet="tbl_Email_Setup" />
+      <End Role="tbl_Email_Users" EntitySet="tbl_Email_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Email_Users_tbl_User" Association="Self.FK_tbl_Email_Users_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Email_Users" EntitySet="tbl_Email_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Meetings_tbl_Case" Association="Self.FK_tbl_Meetings_tbl_Case">
+      <End Role="tbl_City" EntitySet="tbl_City" />
+      <End Role="tbl_Meetings" EntitySet="tbl_Meetings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Pages_tbl_Section" Association="Self.FK_tbl_Pages_tbl_Section">
+      <End Role="tbl_Section" EntitySet="tbl_Section" />
+      <End Role="tbl_Pages" EntitySet="tbl_Pages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Role_Pages_tbl_Pages" Association="Self.FK_tbl_Role_Pages_tbl_Pages">
+      <End Role="tbl_Pages" EntitySet="tbl_Pages" />
+      <End Role="tbl_Role_Pages" EntitySet="tbl_Role_Pages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Role_Pages_tbl_Role" Association="Self.FK_tbl_Role_Pages_tbl_Role">
+      <End Role="tbl_Role" EntitySet="tbl_Role" />
+      <End Role="tbl_Role_Pages" EntitySet="tbl_Role_Pages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_User_Branch_tbl_Branch" Association="Self.FK_tbl_User_Branch_tbl_Branch">
+      <End Role="tbl_Branch" EntitySet="tbl_Branch" />
+      <End Role="tbl_User_Branch" EntitySet="tbl_User_Branch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_User_Branch_tbl_User" Association="Self.FK_tbl_User_Branch_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_User_Branch" EntitySet="tbl_User_Branch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_User_tbl_Role" Association="Self.FK_tbl_User_tbl_Role">
+      <End Role="tbl_Role" EntitySet="tbl_Role" />
+      <End Role="tbl_User" EntitySet="tbl_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_User_tbl_User" Association="Self.FK_tbl_User_tbl_User">
+      <End Role="tbl_City" EntitySet="tbl_City" />
+      <End Role="tbl_User" EntitySet="tbl_User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

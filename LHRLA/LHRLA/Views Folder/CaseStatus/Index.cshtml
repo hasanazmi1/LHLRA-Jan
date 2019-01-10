@@ -1,0 +1,261 @@
+﻿@model LHRLA.DAL.tbl_Case_Status
+
+@{
+    ViewBag.Title = "CaseStatus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section pagelevelcss{
+    <style>
+        input.invalid, textarea.invalid, select.invalid {
+            background-color: #ffdddd;
+        }
+
+        label.invalid {
+            color: red;
+        }
+    </style>
+}
+
+@section actionsMain{
+    <a href="~/CaseStatus/List" class="btn btn-success m-btn m-btn--icon m-btn--wide ">
+        <span>
+            <i class="la la-th-list"></i>
+            <span>
+                Case status List
+            </span>
+        </span>
+    </a>
+}
+@section scripts{
+    <script src="~/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('.m-select2').select2({
+            placeholder: "Select an option",
+            minimumResultsForSearch: 1 / 0
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /////  validation for form FormCaseStatus ////
+            $('#btnCancel').on('click', function () {
+                var form = $("#FormCaseStatus");
+                form.validate().resetForm();
+
+            });
+            $(function () {
+                debugger
+                $("form[name='CaseStatus']").validate({
+                    rules: {
+                        Code: {
+                            required: true
+
+                        },
+                        Description: {
+                            required: true,
+                        }
+                    },
+                    messages: {
+                        Code: "*",
+                        Description: "*",
+
+                    },
+                    errorClass: "invalid",
+                    submitHandler: function (form) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+        $(document).on('click', '#btnSave', function (e) {
+            debugger
+            var Is_Active = true;
+            if ($('#chkIsActive').is(":checked")) {
+                Is_Active = true;
+            }
+            else {
+                Is_Active = false;
+            }
+            var Id = '0';
+            Id = $(this).attr('_id');
+            var Code = $('#Code').val();
+            var Description = $('#Description').val();
+            Is_Active = Is_Active
+
+
+            var url = '@Url.Action("AddUpdateCaseStatus", "CaseStatus")';
+            //ShowLoader();
+            if ($("#FormCaseStatus").valid()) {
+                e.preventDefault();
+                ajaxCall(url, {
+                    ID: Id,
+                    Code: Code,
+                    Description: Description,
+                    Is_Active: Is_Active
+                }, function (resp) {
+                    // HideLoader();
+                    if (typeof (resp) === 'object') {
+                        if (resp.IsSuccess) {
+                            $("#Code").val('');
+                            $("#Description").val('');
+                            $("#Is_Active").val('');
+                            $("#btnSave").attr('_id', 0);
+                            alert(resp.ErrorMessage);
+                            // location.reload();
+                        }
+                        else {
+                           alert('Duplicate Code are not allowed')
+                           // alert(resp.ErrorMessage);
+                        }
+                    }
+                }, function (fail) {
+                    console.log(fail.responseText);
+                    if (fail.responseText.indexOf("IsSuccess") >= 0) {
+                        alert(fail.responseJSON.ErrorMessage);
+                    }
+                    else {
+                        alert(genericMessage);
+                    }
+                    // HideLoader();
+                }, function (err) {
+                    console.log(err.responseText);
+                    if (err.responseText.indexOf("IsSuccess") >= 0) {
+                        alert(err.responseJSON.ErrorMessage);
+                    }
+                    else {
+                        alert(genericMessage);
+                    }
+                    // HideLoader();
+                });
+            }
+        });
+
+
+
+    </script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="m-portlet m-portlet--tab mb-3">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            Details
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <!--begin::Form-->
+            <form class="m-form m-form--fit m-form--label-align-right " id="FormCaseStatus" name="CaseStatus">
+
+                <div class="m-portlet__body">
+
+                    <div class="m-form__section m-form__section--first">
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label">
+                                Code:
+                            </label>
+                            <div class="col-lg-8">
+                                @Html.TextBoxFor(model => model.Code, new { @class = "form-control", placeholder = "Code", id = "Code" })
+
+
+                                @*<input type="text" class="form-control m-input" placeholder="Type">*@
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label">
+                                Description:
+                            </label>
+                            <div class="col-lg-8">
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = "Description", @id = "Description" })
+
+
+                                @*<textarea type="text" class="form-control m-input" placeholder="Description" rows="5"></textarea>*@
+                            </div>
+                        </div>
+
+                        @*<div class="form-group m-form__group row">
+
+                                <label class="col-lg-2 col-form-label">
+                                    Active:
+                                </label>
+                                <div class="col-lg-3">
+                                    <label class="m-checkbox m-checkbox--state-brand">
+                                        <input type="checkbox">
+
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>*@
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label">
+                                Active:
+                            </label>
+                            @if (Model != null && Model.Is_Active == true)
+                            { @Html.HiddenFor(model => model.Is_Active, new { @id = "Is_Active", @checked = "checked" })
+                                <input type="checkbox" style="margin-top:5px" name="Is_Active" id="chkIsActive" checked="checked" />
+                            }
+                            else if (Model != null && Model.Is_Active == false)
+                            {
+                                <input type="checkbox" style="margin-top:5px" name="Is_Active" id="chkIsActive" />
+                            }
+                            else if (Model == null)
+                            {
+                                <input type="checkbox" style="margin-top:5px" name="Is_Active" id="chkIsActive" checked="checked" />
+                            }
+
+                            @*<div class="col-lg-3">
+                                    <label class="m-checkbox m-checkbox--state-brand">
+                                        <input type="checkbox">
+
+                                        <span></span>
+                                    </label>
+                                </div>*@
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions  m--align-right">
+                        <button type="submit" class="btn btn-primary btnOpenPopUp" id="btnSave" _id="@(Model != null ? Model.ID : 0)">
+                            Save
+                        </button>
+                        @*@if (Model != null)
+                        {
+                            <button id="btnCancel" class="btn btn-secondary">
+                                Cancel
+                            </button>
+
+                        }
+                        else
+                        {*@
+                            @*<button id="btnCancel" type="button" class="btn btn-secondary">
+                                Cancel
+                            </button>*@
+                        @*}*@
+
+
+                    </div>
+                </div>
+            </form>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>
+
+
+

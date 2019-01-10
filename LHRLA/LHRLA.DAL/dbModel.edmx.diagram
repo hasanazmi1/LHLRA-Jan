@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="92fca9cadcf94c24928da8d242c82d8e" Name="Diagram1">
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Branch" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Call_Operators" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Calls" Width="1.5" PointX="3.75" PointY="48" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case" Width="1.5" PointX="3" PointY="10.75" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_Data" Width="1.5" PointX="5.25" PointY="10" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_Data_temp" Width="1.5" PointX="7.5" PointY="16.875" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_Fields" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_Fields_Options" Width="1.5" PointX="5.25" PointY="2.25" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_Fields_Section" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_History_Log" Width="1.5" PointX="5.25" PointY="16.125" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_Referral" Width="1.5" PointX="5.25" PointY="23" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_Registeration_Types" Width="1.5" PointX="0.75" PointY="16.625" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_Status" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_Sub_Types" Width="1.5" PointX="1.5" PointY="6.75" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_Tags" Width="1.5" PointX="8.25" PointY="13.25" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_case_temp" Width="1.5" PointX="10.5" PointY="12.25" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Case_Types" Width="1.5" PointX="0.75" PointY="9.5" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_City" Width="1.5" PointX="1.5" PointY="32.125" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Councelling_Sessions" Width="1.5" PointX="5.25" PointY="25.625" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Email_Setup" Width="1.5" PointX="3.75" PointY="39.875" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Email_Users" Width="1.5" PointX="6" PointY="32.25" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Meetings" Width="1.5" PointX="3.75" PointY="43.625" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Pages" Width="1.5" PointX="4.5" PointY="36" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Referral_Agency" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Role" Width="1.5" PointX="1.5" PointY="29.375" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Role_Pages" Width="1.5" PointX="6.75" PointY="29.375" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Section" Width="1.5" PointX="2.25" PointY="36.5" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_Tags_Setup" Width="1.5" PointX="6" PointY="7.25" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_User" Width="1.5" PointX="3.75" PointY="30.25" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_User_Branch" Width="1.5" PointX="6" PointY="13.25" />
+        <EntityTypeShape EntityType="vt_LHRLAModel.tbl_UserLog" Width="1.5" PointX="9.75" PointY="0.75" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_tbl_Branch" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_case_temp_tbl_Branch" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_User_Branch_tbl_Branch" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Calls_tbl_City" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_Data_tbl_Case_Fields" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_History_Log_tbl_Case" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_Referral_tbl_Case" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_Tags_tbl_Case" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_tbl_Case_Types" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_tbl_Case_Types1" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Councelling_Sessions_tbl_Case" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_Data_tbl_Case_Fields1" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case_Fields" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case_History_Log" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_Fields_Options_tbl_Case_Fields" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_Fields_tbl_Case_Fields_Section" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case_History_Log" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case_Registeration_Types" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_Types_tbl_Case_Sub_Types" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Case_Tags_tbl_Tags_Setup" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Meetings_tbl_Case" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_User_tbl_User" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Email_Users_tbl_Email_Setup" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Email_Users_tbl_User" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Pages_tbl_Section" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Role_Pages_tbl_Pages" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_Role_Pages_tbl_Role" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_User_tbl_Role" />
+        <AssociationConnector Association="vt_LHRLAModel.FK_tbl_User_Branch_tbl_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

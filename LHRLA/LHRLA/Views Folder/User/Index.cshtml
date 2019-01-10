@@ -1,0 +1,470 @@
+﻿@{LHRLA.DAL.vt_LHRLAEntities db = new LHRLA.DAL.vt_LHRLAEntities(); }
+@model LHRLA.DAL.tbl_User
+
+@{
+    ViewBag.Title = "Add Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Branch = ViewBag.Branch as List<LHRLA.DAL.tbl_Branch>;
+    var BranchCount = Branch.ToList().Count;
+    var UserBranches = ViewBag.UserBranches as List<LHRLA.DAL.tbl_User_Branch>;
+}
+@section pagelevelcss{
+    <style>
+    input.invalid, textarea.invalid, select.invalid
+{
+    background-color: #ffdddd;
+}
+        label.invalid 
+        {
+            color:red;
+        }
+        </style>
+    }
+@section actionsMain{
+    <a href="~/User/List" class="btn btn-success m-btn m-btn--icon m-btn--wide">
+        <span>
+            <i class="la la-th-list"></i>
+            <span>
+                User List
+            </span>
+        </span>
+    </a>
+}
+@section scripts{
+    <script src="~/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('.m-select2').select2({
+            placeholder: "Select an option",
+            minimumResultsForSearch: 1 / 0
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.validator.setDefaults({
+                ignore: [],
+                // any other default options and/or rules
+            });
+            /////  validation for form FormRole ////
+            $('#btnCancel').on('click', function () {
+               // var form = $("#FormUser");
+               // form.validate().resetForm();
+                $("#FormUser").find('.has-error').removeClass("has-error");
+               
+            });
+            $(function () {
+                debugger
+                $("form[name='User']").validate({
+                    rules: {
+                        User_Name: {
+                            required: true
+
+                        },
+                        User_Password: {
+                            required: true,
+                            minlength: 6
+                        },
+                        Name: {
+                            required: true
+
+                        },
+                        Email: {
+                            required: true,
+                            // Specify that email should be validated
+                            // by the built-in "email" rule
+                            email: true
+                        },
+                        Role_ID: {
+                            required: true,
+                        },
+                        City_ID: {
+                            required: true,
+                        },
+                        Supervisor_ID: {
+                            required: true,
+                        }
+                       
+                    },
+                    messages: {
+                        Name: "*",
+                        User_Name: "*",
+                        User_Password:{
+                            required: "Please provide a password",
+                            minlength: "Your password must be at least 6 characters long",
+                        },
+                        Email: {
+                            required: "*",
+                            email: "Please enter a valid email address",
+                        },
+                        Role_ID: "*",
+                        City_ID: "*",
+                        Supervisor_ID: "*",
+                    
+                    },
+                    errorClass: "invalid",
+
+                    submitHandler: function (form) {
+                        form.submit();
+                    }
+
+                });
+
+
+            });
+        });
+        function redirectOnClick() {
+            document.location = 'List';
+        }
+
+        $(document).on('click', '#btnSave', function (e) {
+
+            var Is_Active = true;
+            if ($('#chkIsActive').is(":checked")) {
+                Is_Active = true;
+            }
+            else {
+                Is_Active = false;
+            }
+
+
+            var Id = '0';
+            Id = $(this).attr('_id');
+            var username = $('#User_Name').val();
+            var password = $('#User_Password').val();
+            var email = $('#Email').val();
+            var personame = $('#Name').val();
+            var role = $('#Role').val();
+            var address = $('#Address').val();
+            var city = $('#City').val();
+            var Supervisor = $('#Supervisor').val();
+            var branchid = $('#chkIsBranch').val();
+            var url = '@Url.Action("AddUpdateUser", "User")';
+
+            //user branch
+            debugger;
+            var lstData = [];
+            $('input[name=activeCheckbox]:checked').not('.checkAll').map(function () {
+                var data = {};
+                data.User_ID = 1;
+                data.Branch_ID = parseInt($(this).attr('data-attr-id'));
+                lstData.push(data);
+            });
+
+            //ShowLoader();
+            if ($("#FormUser").valid()) {
+                e.preventDefault();
+                ajaxCall(url, {
+                    lstBranches: lstData,
+                    ID: Id, User_Name: username,
+                    User_Password: password,
+                    Email: email,
+                    Name: personame,
+                    Role_ID: role,
+                    City_ID: city,
+                    Address: address,
+                    Is_Active: Is_Active,
+                    Supervisor_ID: Supervisor
+                }, function (resp) {
+                    // HideLoader();
+                   
+                    if (typeof (resp) === 'object') {
+                        debugger
+                        if (resp.IsSuccess) {
+                            $('input[type=text]').val('');
+                            $('#Description').val('');
+                            $('#Address').val('');
+                            $('#User_Name').val('');
+                            $('#User_Password').val('');
+                            $('#Email').val('');
+                            $('#Name').val('');
+                            $('#Role').val('');
+                            $('#City').val('');
+
+                            $("#btnSave").attr('_id', 0);
+                            alert(resp.ErrorMessage);
+                            //location.reload();
+                        }
+                        else {
+                           
+                           // alert(resp.ErrorMessage);
+                            alert("Provided email is already exist,Please provide other email address")
+                           // ErrorToast('Duplicate Email are not allowed')
+                        }
+                    }
+                }, function (fail) {
+                    debugger
+                    console.log(fail.responseText);
+                    if (fail.responseText.indexOf("IsSuccess") >= 0) {
+                        alert(fail.responseJSON.ErrorMessage);
+                    }
+                    else {
+                        alert(genericMessage);
+                    }
+                    // HideLoader();
+                }, function (err) {
+                    debugger
+                    console.log(err.responseText);
+                    if (err.responseText.indexOf("IsSuccess") >= 0) {
+                        alert(err.responseJSON.ErrorMessage);
+                    }
+                    else {
+                      //ErrorToast('Duplicate Email are not allowed')
+                        alert(genericMessage);
+                    }
+                    // HideLoader();
+                });
+            }
+        });
+
+
+
+    </script>
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="m-portlet m-portlet--tab">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            Details
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <!--begin::Form-->
+            <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" id="FormUser" name="User">
+                <div class="m-portlet__body">
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    User Name:
+                                </label>
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.User_Name, new { @class = "form-control", placeholder = "Name", id = "User_Name" })
+
+                                    @*<input type="text" class="form-control m-input" placeholder="User Name">*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    Password:
+                                </label>
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.User_Password, new { @class = "form-control", @type = "password", placeholder = "Password", id = "User_Password" })
+
+                                    @*<input type="password" class="form-control m-input" placeholder="Password">*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    Person Name:
+                                </label>
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Name", id = "Name" })
+
+                                    @*<input type="text" class="form-control m-input" placeholder="Person Name">*@
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    Email:
+                                </label>
+                                <div class="col-lg-8">
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Email", id = "Email" })
+
+                                    @*<input type="email" class="form-control m-input" placeholder="Email">*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    Address:
+                                </label>
+                                <div class="col-lg-8">
+                                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control", placeholder = "Address", id = "Address" })
+
+                                    @*<div class="m-input-icon m-input-icon--right">
+                                    <input type="text" class="form-control m-input" placeholder="Enter your address">
+                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+                                        <span>
+                                            <i class="la la-map-marker"></i>
+                                        </span>
+                                    </span>
+                                </div>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    City:
+                                </label>
+                                <div class="col-lg-8">
+                                    @Html.DropDownListFor(x => x.City_ID, new SelectList(ViewBag.City != null ? ViewBag.City : "None", "ID", "Name"), "Select City", new { @class = "form-control", @id = "City" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    Role:
+                                </label>
+                                <div class="col-lg-8">
+                                    @Html.DropDownListFor(x => x.Role_ID, new SelectList(ViewBag.Roles != null ? ViewBag.Roles : "None", "ID", "Name"), "Select Roles", new { @class = "form-control", @id = "Role" })
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    Supervisor:
+                                </label>
+                                <div class="col-lg-8">
+                                    @Html.DropDownListFor(x => x.Supervisor_ID, new SelectList(ViewBag.Supervisor != null ? ViewBag.Supervisor : "None", "ID", "Email"), "Select Supervisor", new { @class = "form-control", @id = "Supervisor" })
+
+
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="col-lg-12">
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label">
+                                Active:
+                            </label>
+                            <div class="col-lg-8">
+                                <label class="m-checkbox m-checkbox--state-brand">
+                                    <input type="checkbox">
+
+                                    <span></span>
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </div>*@
+                        <div class="col-lg-12">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    Active:
+                                </label>
+                                @if (Model != null && Model.Is_Active == true)
+                                { @Html.HiddenFor(model => model.Is_Active, new { @id = "Is_Active", @checked = "checked" })
+                                    <input type="checkbox" style="margin-top:5px" name="Is_Active" id="chkIsActive" checked="checked" />
+                                }
+                                else if (Model != null && Model.Is_Active == false)
+                                {
+                                    <input type="checkbox" style="margin-top:5px" name="Is_Active" id="chkIsActive" />
+                                }
+                                else if (Model == null)
+                                {
+                                    <input type="checkbox" style="margin-top:5px" name="Is_Active" id="chkIsActive" checked="checked" />
+                                }
+
+                                @*<div class="col-lg-3">
+                                <label class="m-checkbox m-checkbox--state-brand">
+                                    <input type="checkbox">
+
+                                    <span></span>
+                                </label>
+                            </div>*@
+                            </div>
+                        </div>
+                        <!--dynamic branches-->
+                        <div class="col-lg-12">
+                            <h1>Assign Branch</h1>
+                            @foreach (var item in Branch)
+                            {
+                                <div class="form-group m-form__group row">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="activeCheckbox"
+                                                   data-attr-id="@item.ID" @(UserBranches == null ? string.Empty : UserBranches.Any(n => n.Branch_ID == item.ID) ? "checked" : string.Empty)><span class="checkbox-material"><span class="check"></span></span>
+                                            @item.Name
+                                        </label>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!--
+                    <div class="col-lg-12">
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-2 col-form-label">
+                                Assign Branch
+                            </label>
+                            <div class="col-lg-8">
+                                <div class="m-checkbox-inline">
+                                    <label class="m-checkbox m-checkbox--state-brand">
+                                        <input type="checkbox">
+                                        B1
+                                        <span></span>
+                                    </label>
+                                    <label class="m-checkbox m-checkbox--state-brand">
+                                        <input type="checkbox">
+                                        B2
+                                        <span></span>
+                                    </label>
+                                    <label class="m-checkbox m-checkbox--state-brand">
+                                        <input type="checkbox">
+                                        B3
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                -->
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions  m--align-right">
+                        <button type="submit" class="btn btn-primary btnOpenPopUp" id="btnSave" _id="@(Model != null ? Model.ID : 0)">
+                            Save
+                        </button>
+                        @*@if (Model != null)
+                        {
+                            <button id="btnCancel" class="btn btn-secondary">
+                                Cancel
+                            </button>
+
+                        }
+                        else
+                        {*@
+                            @*<button id="btnCancel" type="button" class="btn btn-secondary">
+                                Cancel
+                            </button>*@
+                        @*}*@
+
+
+
+                    </div>
+                </div>
+            </form>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>

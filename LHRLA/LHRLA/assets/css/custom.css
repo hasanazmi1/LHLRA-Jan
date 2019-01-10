@@ -1,0 +1,18 @@
+.scheduleMeeting{padding: 0;height: 350px;overflow: hidden;}
+.vCenter > tbody > tr > td,.vCenter > thead > tr > td,.vCenter tr > td{vertical-align: middle;}
+.m-topbar__notifications.m-dropdown.m-dropdown--align-center.m-dropdown--large .m-dropdown__wrapper{margin-left: 0;left: auto;right: 0;}
+.m-topbar .m-topbar__nav.m-nav>.m-nav__item.m-topbar__notifications.m-topbar__notifications--img.m-dropdown--arrow .m-dropdown__arrow{left: auto;right: 10px;}
+.select2-container--default .select2-results__option .select2-results__group{padding: 10px 15px 5px;}
+.verticalAlignMiddle > tbody > tr > td {vertical-align: middle;}
+.m-table.m-table--head-separator-primary.dataTable.no-footer{border-bottom:none;margin-bottom: 20px;}
+table.dataTable thead th, table.dataTable thead td{padding: .75rem;font-weight: normal;}
+.cstm-colum::before {content: "";background: #898b96; width: 1px;height: 100%;position: absolute;right: 0px;}
+.cstm-button-warp {width: 100%;border-top: none!important;padding: 10px!important;}
+.dataTables_filter input[type="search"] {border: 1px solid #898b96!important;}
+.dataTables_length label {margin-bottom: 0px!important;}
+.dataTables_length select {margin-left: 4px;margin-right: 5px;}
+.m-login__logo img {width: 200px;}
+.m-login__logo{margin-bottom: 20px!important;}
+.addBtn {position: absolute; top: 18%;right: 6%;}
+ul#myUL li {list-style: none;padding: 5px;}
+.cstm-editedbtn{text-decoration: none!important;color: #575962;}

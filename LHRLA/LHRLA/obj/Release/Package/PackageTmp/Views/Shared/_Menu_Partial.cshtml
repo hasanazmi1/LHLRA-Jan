@@ -1,0 +1,286 @@
+﻿
+@*@if (Session["User"] != null)
+{
+
+
+    //if (Session["RoleID"] != null)
+    //{
+
+    var MenuMaster = (List<LHRLA.Core.ViewModel.MenuVM>)Session["MenuMaster"];
+    var GroupByMenu = MenuMaster.GroupBy(x => x.Section).ToList();
+
+    foreach (var MenuList in GroupByMenu)
+    {
+
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">@MenuList.Key<span> class="caret"</span></a>
+            <ul class="dropdown-menu">
+                @foreach (var SubMenuList in MenuList)
+                    {
+                    <li><a href="#">@SubMenuList.Page</a></li>
+                }
+            </ul>
+        </li>
+        //  }
+    }
+}*@
+
+
+<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="0"
+     m-menu-dropdown-timeout="500">
+    <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+        @if (Session["User"] != null)
+        {
+
+
+            //if (Session["RoleID"] != null)
+            //{
+
+            var MenuMaster = (List<LHRLA.Core.ViewModel.MenuVM>)Session["MenuMaster"];
+            var GroupByMenu = MenuMaster.GroupBy(x => x.Section).ToList();
+
+            foreach (var MenuList in GroupByMenu)
+            {
+                <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                    <a href="#" class="m-menu__link m-menu__toggle">
+                        <i class="m-menu__link-icon la la-users"></i>
+                        <span class="m-menu__link-text">
+                            @MenuList.Key
+                        </span>
+                        <i class="m-menu__ver-arrow la la-angle-right"></i>
+                    </a>
+                    <div class="m-menu__submenu ">
+                        <span class="m-menu__arrow"></span>
+                        <ul class="m-menu__subnav">
+                            <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                                <span class="m-menu__link">
+                                    <span class="m-menu__link-text">
+                                        @MenuList.Key
+                                    </span>
+                                </span>
+                            </li>
+                            @foreach (var SubMenuList in MenuList)
+                            {
+                                <li class="m-menu__item " aria-haspopup="true">
+                                    <a href="@SubMenuList.URL" class="m-menu__link ">
+                                        <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                            <span></span>
+                                        </i>
+                                        <span class="m-menu__link-text">
+                                            @SubMenuList.Page
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </li>
+            }
+        }
+    </ul>
+</div>
+
+
+@*<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="0"
+     m-menu-dropdown-timeout="500">
+    <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+        <li class="m-menu__item  m-menu__item--active" aria-haspopup="true">
+            <a href="/../../home/index" class="m-menu__link ">
+                <i class="m-menu__link-icon flaticon-line-graph"></i>
+                <span class="m-menu__link-title">
+                    <span class="m-menu__link-wrap">
+                        <span class="m-menu__link-text">
+                            Dashboard
+                        </span>
+                    </span>
+                </span>
+            </a>
+        </li>
+        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+            <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-layers"></i>
+                <span class="m-menu__link-text">
+                    Case
+                </span>
+                <i class="m-menu__ver-arrow la la-angle-right"></i>
+            </a>
+            <div class="m-menu__submenu ">
+                <span class="m-menu__arrow"></span>
+                <ul class="m-menu__subnav">
+                    <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                        <span class="m-menu__link">
+                            <span class="m-menu__link-text">
+                                Case
+                            </span>
+                        </span>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../CaseScreen/index" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Add Case
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../CaseScreen/CaseStatus" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Case Status
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../CaseScreen/Field" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Field
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../CaseScreen/CaseRegisteration" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Case Registeration
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../CaseScreen/CaseTag" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Tags Setup
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../CaseScreen/ReferalAgency" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Referral Agency
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../CaseScreen/Categories" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Case Categories
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../CaseScreen/Counselling" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Counselling
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../CaseScreen/CaseHistory" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Case History
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../CaseScreen/Meeting" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Meeting
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+            <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon la la-users"></i>
+                <span class="m-menu__link-text">
+                    User
+                </span>
+                <i class="m-menu__ver-arrow la la-angle-right"></i>
+            </a>
+            <div class="m-menu__submenu ">
+                <span class="m-menu__arrow"></span>
+                <ul class="m-menu__subnav">
+                    <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                        <span class="m-menu__link">
+                            <span class="m-menu__link-text">
+                                User
+                            </span>
+                        </span>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../user/index" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                User Field
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../user/list" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                User List
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../user/BranchesSetup" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Branches Setup
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                        <a href="/../../user/CitySetup" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                City Setup
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+    </div>*@

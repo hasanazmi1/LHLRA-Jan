@@ -1,0 +1,969 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vt_LHRLAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="vt_LHRLAEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_AddUserLog">
+      <Parameter Name="EventName" Mode="In" Type="String" />
+      <Parameter Name="EntityName" Mode="In" Type="String" />
+      <Parameter Name="EntityID" Mode="In" Type="Int64" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="tbl_Branch" EntityType="vt_LHRLAModel.tbl_Branch" />
+    <EntitySet Name="tbl_Call_Operators" EntityType="vt_LHRLAModel.tbl_Call_Operators" />
+    <EntitySet Name="tbl_Calls" EntityType="vt_LHRLAModel.tbl_Calls" />
+    <EntitySet Name="tbl_Case" EntityType="vt_LHRLAModel.tbl_Case" />
+    <EntitySet Name="tbl_Case_Data" EntityType="vt_LHRLAModel.tbl_Case_Data" />
+    <EntitySet Name="tbl_Case_Data_temp" EntityType="vt_LHRLAModel.tbl_Case_Data_temp" />
+    <EntitySet Name="tbl_Case_Fields" EntityType="vt_LHRLAModel.tbl_Case_Fields" />
+    <EntitySet Name="tbl_Case_Fields_Options" EntityType="vt_LHRLAModel.tbl_Case_Fields_Options" />
+    <EntitySet Name="tbl_Case_Fields_Section" EntityType="vt_LHRLAModel.tbl_Case_Fields_Section" />
+    <EntitySet Name="tbl_Case_History_Log" EntityType="vt_LHRLAModel.tbl_Case_History_Log" />
+    <EntitySet Name="tbl_Case_Referral" EntityType="vt_LHRLAModel.tbl_Case_Referral" />
+    <EntitySet Name="tbl_Case_Registeration_Types" EntityType="vt_LHRLAModel.tbl_Case_Registeration_Types" />
+    <EntitySet Name="tbl_Case_Status" EntityType="vt_LHRLAModel.tbl_Case_Status" />
+    <EntitySet Name="tbl_Case_Sub_Types" EntityType="vt_LHRLAModel.tbl_Case_Sub_Types" />
+    <EntitySet Name="tbl_Case_Tags" EntityType="vt_LHRLAModel.tbl_Case_Tags" />
+    <EntitySet Name="tbl_case_temp" EntityType="vt_LHRLAModel.tbl_case_temp" />
+    <EntitySet Name="tbl_Case_Types" EntityType="vt_LHRLAModel.tbl_Case_Types" />
+    <EntitySet Name="tbl_City" EntityType="vt_LHRLAModel.tbl_City" />
+    <EntitySet Name="tbl_Councelling_Sessions" EntityType="vt_LHRLAModel.tbl_Councelling_Sessions" />
+    <EntitySet Name="tbl_Email_Setup" EntityType="vt_LHRLAModel.tbl_Email_Setup" />
+    <EntitySet Name="tbl_Email_Users" EntityType="vt_LHRLAModel.tbl_Email_Users" />
+    <EntitySet Name="tbl_Meetings" EntityType="vt_LHRLAModel.tbl_Meetings" />
+    <EntitySet Name="tbl_Pages" EntityType="vt_LHRLAModel.tbl_Pages" />
+    <EntitySet Name="tbl_Referral_Agency" EntityType="vt_LHRLAModel.tbl_Referral_Agency" />
+    <EntitySet Name="tbl_Role" EntityType="vt_LHRLAModel.tbl_Role" />
+    <EntitySet Name="tbl_Role_Pages" EntityType="vt_LHRLAModel.tbl_Role_Pages" />
+    <EntitySet Name="tbl_Section" EntityType="vt_LHRLAModel.tbl_Section" />
+    <EntitySet Name="tbl_Tags_Setup" EntityType="vt_LHRLAModel.tbl_Tags_Setup" />
+    <EntitySet Name="tbl_User" EntityType="vt_LHRLAModel.tbl_User" />
+    <EntitySet Name="tbl_User_Branch" EntityType="vt_LHRLAModel.tbl_User_Branch" />
+    <EntitySet Name="tbl_UserLog" EntityType="vt_LHRLAModel.tbl_UserLog" />
+    <AssociationSet Name="FK_tbl_Case_tbl_Branch" Association="vt_LHRLAModel.FK_tbl_Case_tbl_Branch">
+      <End Role="tbl_Branch" EntitySet="tbl_Branch" />
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_case_temp_tbl_Branch" Association="vt_LHRLAModel.FK_tbl_case_temp_tbl_Branch">
+      <End Role="tbl_Branch" EntitySet="tbl_Branch" />
+      <End Role="tbl_case_temp" EntitySet="tbl_case_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_User_Branch_tbl_Branch" Association="vt_LHRLAModel.FK_tbl_User_Branch_tbl_Branch">
+      <End Role="tbl_Branch" EntitySet="tbl_Branch" />
+      <End Role="tbl_User_Branch" EntitySet="tbl_User_Branch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Calls_tbl_City" Association="vt_LHRLAModel.FK_tbl_Calls_tbl_City">
+      <End Role="tbl_City" EntitySet="tbl_City" />
+      <End Role="tbl_Calls" EntitySet="tbl_Calls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Data_tbl_Case_Fields" Association="vt_LHRLAModel.FK_tbl_Case_Data_tbl_Case_Fields">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Case_Data" EntitySet="tbl_Case_Data" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Data_temp_tbl_Case" Association="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Case_Data_temp" EntitySet="tbl_Case_Data_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_History_Log_tbl_Case" Association="vt_LHRLAModel.FK_tbl_Case_History_Log_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Case_History_Log" EntitySet="tbl_Case_History_Log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Referral_tbl_Case" Association="vt_LHRLAModel.FK_tbl_Case_Referral_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Case_Referral" EntitySet="tbl_Case_Referral" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Tags_tbl_Case" Association="vt_LHRLAModel.FK_tbl_Case_Tags_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Case_Tags" EntitySet="tbl_Case_Tags" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_tbl_Case_Types" Association="vt_LHRLAModel.FK_tbl_Case_tbl_Case_Types">
+      <End Role="tbl_Case_Types" EntitySet="tbl_Case_Types" />
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_tbl_Case_Types1" Association="vt_LHRLAModel.FK_tbl_Case_tbl_Case_Types1">
+      <End Role="tbl_Case_Registeration_Types" EntitySet="tbl_Case_Registeration_Types" />
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_case_temp_tbl_Case" Association="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_case_temp" EntitySet="tbl_case_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Councelling_Sessions_tbl_Case" Association="vt_LHRLAModel.FK_tbl_Councelling_Sessions_tbl_Case">
+      <End Role="tbl_Case" EntitySet="tbl_Case" />
+      <End Role="tbl_Councelling_Sessions" EntitySet="tbl_Councelling_Sessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Data_tbl_Case_Fields1" Association="vt_LHRLAModel.FK_tbl_Case_Data_tbl_Case_Fields1">
+      <End Role="tbl_Case_Fields" EntitySet="tbl_Case_Fields" />
+      <End Role="tbl_Case_Data" EntitySet="tbl_Case_Data" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Data_temp_tbl_Case_Fields" Association="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case_Fields">
+      <End Role="tbl_Case_Fields" EntitySet="tbl_Case_Fields" />
+      <End Role="tbl_Case_Data_temp" EntitySet="tbl_Case_Data_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Data_temp_tbl_Case_History_Log" Association="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case_History_Log">
+      <End Role="tbl_Case_History_Log" EntitySet="tbl_Case_History_Log" />
+      <End Role="tbl_Case_Data_temp" EntitySet="tbl_Case_Data_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Fields_Options_tbl_Case_Fields" Association="vt_LHRLAModel.FK_tbl_Case_Fields_Options_tbl_Case_Fields">
+      <End Role="tbl_Case_Fields" EntitySet="tbl_Case_Fields" />
+      <End Role="tbl_Case_Fields_Options" EntitySet="tbl_Case_Fields_Options" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Fields_tbl_Case_Fields_Section" Association="vt_LHRLAModel.FK_tbl_Case_Fields_tbl_Case_Fields_Section">
+      <End Role="tbl_Case_Fields_Section" EntitySet="tbl_Case_Fields_Section" />
+      <End Role="tbl_Case_Fields" EntitySet="tbl_Case_Fields" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_case_temp_tbl_Case_History_Log" Association="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case_History_Log">
+      <End Role="tbl_Case_History_Log" EntitySet="tbl_Case_History_Log" />
+      <End Role="tbl_case_temp" EntitySet="tbl_case_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_case_temp_tbl_Case_Registeration_Types" Association="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case_Registeration_Types">
+      <End Role="tbl_Case_Registeration_Types" EntitySet="tbl_Case_Registeration_Types" />
+      <End Role="tbl_case_temp" EntitySet="tbl_case_temp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Types_tbl_Case_Sub_Types" Association="vt_LHRLAModel.FK_tbl_Case_Types_tbl_Case_Sub_Types">
+      <End Role="tbl_Case_Sub_Types" EntitySet="tbl_Case_Sub_Types" />
+      <End Role="tbl_Case_Types" EntitySet="tbl_Case_Types" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Case_Tags_tbl_Tags_Setup" Association="vt_LHRLAModel.FK_tbl_Case_Tags_tbl_Tags_Setup">
+      <End Role="tbl_Tags_Setup" EntitySet="tbl_Tags_Setup" />
+      <End Role="tbl_Case_Tags" EntitySet="tbl_Case_Tags" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Meetings_tbl_Case" Association="vt_LHRLAModel.FK_tbl_Meetings_tbl_Case">
+      <End Role="tbl_City" EntitySet="tbl_City" />
+      <End Role="tbl_Meetings" EntitySet="tbl_Meetings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_User_tbl_User" Association="vt_LHRLAModel.FK_tbl_User_tbl_User">
+      <End Role="tbl_City" EntitySet="tbl_City" />
+      <End Role="tbl_User" EntitySet="tbl_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Email_Users_tbl_Email_Setup" Association="vt_LHRLAModel.FK_tbl_Email_Users_tbl_Email_Setup">
+      <End Role="tbl_Email_Setup" EntitySet="tbl_Email_Setup" />
+      <End Role="tbl_Email_Users" EntitySet="tbl_Email_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Email_Users_tbl_User" Association="vt_LHRLAModel.FK_tbl_Email_Users_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Email_Users" EntitySet="tbl_Email_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Pages_tbl_Section" Association="vt_LHRLAModel.FK_tbl_Pages_tbl_Section">
+      <End Role="tbl_Section" EntitySet="tbl_Section" />
+      <End Role="tbl_Pages" EntitySet="tbl_Pages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Role_Pages_tbl_Pages" Association="vt_LHRLAModel.FK_tbl_Role_Pages_tbl_Pages">
+      <End Role="tbl_Pages" EntitySet="tbl_Pages" />
+      <End Role="tbl_Role_Pages" EntitySet="tbl_Role_Pages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Role_Pages_tbl_Role" Association="vt_LHRLAModel.FK_tbl_Role_Pages_tbl_Role">
+      <End Role="tbl_Role" EntitySet="tbl_Role" />
+      <End Role="tbl_Role_Pages" EntitySet="tbl_Role_Pages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_User_tbl_Role" Association="vt_LHRLAModel.FK_tbl_User_tbl_Role">
+      <End Role="tbl_Role" EntitySet="tbl_Role" />
+      <End Role="tbl_User" EntitySet="tbl_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_User_Branch_tbl_User" Association="vt_LHRLAModel.FK_tbl_User_Branch_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_User_Branch" EntitySet="tbl_User_Branch" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tbl_Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <NavigationProperty Name="tbl_Case" Relationship="vt_LHRLAModel.FK_tbl_Case_tbl_Branch" FromRole="tbl_Branch" ToRole="tbl_Case" />
+    <NavigationProperty Name="tbl_case_temp" Relationship="vt_LHRLAModel.FK_tbl_case_temp_tbl_Branch" FromRole="tbl_Branch" ToRole="tbl_case_temp" />
+    <NavigationProperty Name="tbl_User_Branch" Relationship="vt_LHRLAModel.FK_tbl_User_Branch_tbl_Branch" FromRole="tbl_Branch" ToRole="tbl_User_Branch" />
+  </EntityType>
+  <EntityType Name="tbl_Call_Operators">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_Calls">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Caller_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Caller_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Operator_ID" Type="Int32" />
+    <Property Name="Call_Start_DateTime" Type="DateTime" Precision="3" />
+    <Property Name="Call_End_DateTime" Type="DateTime" Precision="3" />
+    <Property Name="Call_Duration_In_Mins" Type="Int32" />
+    <Property Name="Caller_Longitude" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Caller_Latitude" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="City_ID" Type="Int32" />
+    <Property Name="Is_Received" Type="Boolean" />
+    <Property Name="Operator_Descp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_City" Relationship="vt_LHRLAModel.FK_tbl_Calls_tbl_City" FromRole="tbl_Calls" ToRole="tbl_City" />
+  </EntityType>
+  <EntityType Name="tbl_Case">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Case_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Case_DateTime" Type="DateTime" Precision="3" />
+    <Property Name="Case_Type_Id" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Case_Registeration_Type_Id" Type="Int32" />
+    <Property Name="Attachment_Count" Type="Int32" />
+    <Property Name="Is_Submitted" Type="Boolean" />
+    <Property Name="Current_Status_ID" Type="Int32" />
+    <Property Name="Call_ID" Type="Int32" />
+    <Property Name="Linked_Case_ID" Type="Int32" />
+    <Property Name="Case_Reference_Person" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Approval_Level" Type="Int32" />
+    <Property Name="Client_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Client_Contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Client_CNIC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Followup_Date" Type="DateTime" Precision="3" />
+    <Property Name="Branch_ID" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="CounselorId" Type="Int32" />
+    <NavigationProperty Name="tbl_Branch" Relationship="vt_LHRLAModel.FK_tbl_Case_tbl_Branch" FromRole="tbl_Case" ToRole="tbl_Branch" />
+    <NavigationProperty Name="tbl_Case_Data" Relationship="vt_LHRLAModel.FK_tbl_Case_Data_tbl_Case_Fields" FromRole="tbl_Case" ToRole="tbl_Case_Data" />
+    <NavigationProperty Name="tbl_Case_Data_temp" Relationship="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case" FromRole="tbl_Case" ToRole="tbl_Case_Data_temp" />
+    <NavigationProperty Name="tbl_Case_History_Log" Relationship="vt_LHRLAModel.FK_tbl_Case_History_Log_tbl_Case" FromRole="tbl_Case" ToRole="tbl_Case_History_Log" />
+    <NavigationProperty Name="tbl_Case_Referral" Relationship="vt_LHRLAModel.FK_tbl_Case_Referral_tbl_Case" FromRole="tbl_Case" ToRole="tbl_Case_Referral" />
+    <NavigationProperty Name="tbl_Case_Tags" Relationship="vt_LHRLAModel.FK_tbl_Case_Tags_tbl_Case" FromRole="tbl_Case" ToRole="tbl_Case_Tags" />
+    <NavigationProperty Name="tbl_Case_Types" Relationship="vt_LHRLAModel.FK_tbl_Case_tbl_Case_Types" FromRole="tbl_Case" ToRole="tbl_Case_Types" />
+    <NavigationProperty Name="tbl_Case_Registeration_Types" Relationship="vt_LHRLAModel.FK_tbl_Case_tbl_Case_Types1" FromRole="tbl_Case" ToRole="tbl_Case_Registeration_Types" />
+    <NavigationProperty Name="tbl_case_temp" Relationship="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case" FromRole="tbl_Case" ToRole="tbl_case_temp" />
+    <NavigationProperty Name="tbl_Councelling_Sessions" Relationship="vt_LHRLAModel.FK_tbl_Councelling_Sessions_tbl_Case" FromRole="tbl_Case" ToRole="tbl_Councelling_Sessions" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Data">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Case_Field_ID" Type="Int32" />
+    <Property Name="Case_ID" Type="Int32" />
+    <Property Name="Field_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_Case" Relationship="vt_LHRLAModel.FK_tbl_Case_Data_tbl_Case_Fields" FromRole="tbl_Case_Data" ToRole="tbl_Case" />
+    <NavigationProperty Name="tbl_Case_Fields" Relationship="vt_LHRLAModel.FK_tbl_Case_Data_tbl_Case_Fields1" FromRole="tbl_Case_Data" ToRole="tbl_Case_Fields" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Data_temp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CaseHistoryLogID" Type="Int32" />
+    <Property Name="Case_Field_ID" Type="Int32" />
+    <Property Name="Case_ID" Type="Int32" />
+    <Property Name="Field_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_Case" Relationship="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case" FromRole="tbl_Case_Data_temp" ToRole="tbl_Case" />
+    <NavigationProperty Name="tbl_Case_Fields" Relationship="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case_Fields" FromRole="tbl_Case_Data_temp" ToRole="tbl_Case_Fields" />
+    <NavigationProperty Name="tbl_Case_History_Log" Relationship="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case_History_Log" FromRole="tbl_Case_Data_temp" ToRole="tbl_Case_History_Log" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Fields">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Field_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <Property Name="Sequence_No" Type="Int32" />
+    <Property Name="Is_Mandatory" Type="Boolean" />
+    <Property Name="Is_Visible_On_App" Type="Boolean" />
+    <Property Name="Case_Field_Section_ID" Type="Int32" />
+    <Property Name="Is_Encrypted" Type="Boolean" />
+    <Property Name="Is_Hidden" Type="Boolean" />
+    <NavigationProperty Name="tbl_Case_Data" Relationship="vt_LHRLAModel.FK_tbl_Case_Data_tbl_Case_Fields1" FromRole="tbl_Case_Fields" ToRole="tbl_Case_Data" />
+    <NavigationProperty Name="tbl_Case_Data_temp" Relationship="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case_Fields" FromRole="tbl_Case_Fields" ToRole="tbl_Case_Data_temp" />
+    <NavigationProperty Name="tbl_Case_Fields_Options" Relationship="vt_LHRLAModel.FK_tbl_Case_Fields_Options_tbl_Case_Fields" FromRole="tbl_Case_Fields" ToRole="tbl_Case_Fields_Options" />
+    <NavigationProperty Name="tbl_Case_Fields_Section" Relationship="vt_LHRLAModel.FK_tbl_Case_Fields_tbl_Case_Fields_Section" FromRole="tbl_Case_Fields" ToRole="tbl_Case_Fields_Section" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Fields_Options">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Case_Field_ID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <NavigationProperty Name="tbl_Case_Fields" Relationship="vt_LHRLAModel.FK_tbl_Case_Fields_Options_tbl_Case_Fields" FromRole="tbl_Case_Fields_Options" ToRole="tbl_Case_Fields" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Fields_Section">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <Property Name="Sequence_No" Type="Int32" />
+    <NavigationProperty Name="tbl_Case_Fields" Relationship="vt_LHRLAModel.FK_tbl_Case_Fields_tbl_Case_Fields_Section" FromRole="tbl_Case_Fields_Section" ToRole="tbl_Case_Fields" />
+  </EntityType>
+  <EntityType Name="tbl_Case_History_Log">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Case_ID" Type="Int32" />
+    <Property Name="Old_Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="New_Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Approval1_User" Type="Int32" />
+    <Property Name="Approval1_Datetime" Type="DateTime" Precision="3" />
+    <Property Name="Approval1_Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Approval2_User" Type="Int32" />
+    <Property Name="Approval2_Datetime" Type="DateTime" Precision="3" />
+    <Property Name="Approval2_Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_Case" Relationship="vt_LHRLAModel.FK_tbl_Case_History_Log_tbl_Case" FromRole="tbl_Case_History_Log" ToRole="tbl_Case" />
+    <NavigationProperty Name="tbl_Case_Data_temp" Relationship="vt_LHRLAModel.FK_tbl_Case_Data_temp_tbl_Case_History_Log" FromRole="tbl_Case_History_Log" ToRole="tbl_Case_Data_temp" />
+    <NavigationProperty Name="tbl_case_temp" Relationship="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case_History_Log" FromRole="tbl_Case_History_Log" ToRole="tbl_case_temp" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Referral">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Case_ID" Type="Int32" />
+    <Property Name="Agency_ID" Type="Int32" />
+    <Property Name="Agency_Role_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_Case" Relationship="vt_LHRLAModel.FK_tbl_Case_Referral_tbl_Case" FromRole="tbl_Case_Referral" ToRole="tbl_Case" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Registeration_Types">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <NavigationProperty Name="tbl_Case" Relationship="vt_LHRLAModel.FK_tbl_Case_tbl_Case_Types1" FromRole="tbl_Case_Registeration_Types" ToRole="tbl_Case" />
+    <NavigationProperty Name="tbl_case_temp" Relationship="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case_Registeration_Types" FromRole="tbl_Case_Registeration_Types" ToRole="tbl_case_temp" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Status">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Sub_Types">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <NavigationProperty Name="tbl_Case_Types" Relationship="vt_LHRLAModel.FK_tbl_Case_Types_tbl_Case_Sub_Types" FromRole="tbl_Case_Sub_Types" ToRole="tbl_Case_Types" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Tags">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Case_ID" Type="Int32" Nullable="false" />
+    <Property Name="Tag_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Case" Relationship="vt_LHRLAModel.FK_tbl_Case_Tags_tbl_Case" FromRole="tbl_Case_Tags" ToRole="tbl_Case" />
+    <NavigationProperty Name="tbl_Tags_Setup" Relationship="vt_LHRLAModel.FK_tbl_Case_Tags_tbl_Tags_Setup" FromRole="tbl_Case_Tags" ToRole="tbl_Tags_Setup" />
+  </EntityType>
+  <EntityType Name="tbl_case_temp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Case_ID" Type="Int32" />
+    <Property Name="CaseHistoryLogID" Type="Int32" />
+    <Property Name="Case_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Case_DateTime" Type="DateTime" Precision="3" />
+    <Property Name="Case_Type_Id" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Case_Registeration_Type_Id" Type="Int32" />
+    <Property Name="Attachment_Count" Type="Int32" />
+    <Property Name="Is_Submitted" Type="Boolean" />
+    <Property Name="Current_Status_ID" Type="Int32" />
+    <Property Name="Call_ID" Type="Int32" />
+    <Property Name="Linked_Case_ID" Type="Int32" />
+    <Property Name="Case_Reference_Person" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Approval_Level" Type="Int32" />
+    <Property Name="Client_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Client_Contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Client_CNIC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Followup_Date" Type="DateTime" Precision="3" />
+    <Property Name="Branch_ID" Type="Int32" />
+    <Property Name="CounselorId" Type="Int32" />
+    <NavigationProperty Name="tbl_Branch" Relationship="vt_LHRLAModel.FK_tbl_case_temp_tbl_Branch" FromRole="tbl_case_temp" ToRole="tbl_Branch" />
+    <NavigationProperty Name="tbl_Case" Relationship="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case" FromRole="tbl_case_temp" ToRole="tbl_Case" />
+    <NavigationProperty Name="tbl_Case_History_Log" Relationship="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case_History_Log" FromRole="tbl_case_temp" ToRole="tbl_Case_History_Log" />
+    <NavigationProperty Name="tbl_Case_Registeration_Types" Relationship="vt_LHRLAModel.FK_tbl_case_temp_tbl_Case_Registeration_Types" FromRole="tbl_case_temp" ToRole="tbl_Case_Registeration_Types" />
+  </EntityType>
+  <EntityType Name="tbl_Case_Types">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <Property Name="Case_Sub_Type_ID" Type="Int32" />
+    <NavigationProperty Name="tbl_Case" Relationship="vt_LHRLAModel.FK_tbl_Case_tbl_Case_Types" FromRole="tbl_Case_Types" ToRole="tbl_Case" />
+    <NavigationProperty Name="tbl_Case_Sub_Types" Relationship="vt_LHRLAModel.FK_tbl_Case_Types_tbl_Case_Sub_Types" FromRole="tbl_Case_Types" ToRole="tbl_Case_Sub_Types" />
+  </EntityType>
+  <EntityType Name="tbl_City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Longitude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Short_Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <NavigationProperty Name="tbl_Calls" Relationship="vt_LHRLAModel.FK_tbl_Calls_tbl_City" FromRole="tbl_City" ToRole="tbl_Calls" />
+    <NavigationProperty Name="tbl_Meetings" Relationship="vt_LHRLAModel.FK_tbl_Meetings_tbl_Case" FromRole="tbl_City" ToRole="tbl_Meetings" />
+    <NavigationProperty Name="tbl_User" Relationship="vt_LHRLAModel.FK_tbl_User_tbl_User" FromRole="tbl_City" ToRole="tbl_User" />
+  </EntityType>
+  <EntityType Name="tbl_Councelling_Sessions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Case_ID" Type="Int32" />
+    <Property Name="Counceller_ID" Type="Int32" />
+    <Property Name="Session_Duration_In_Mins" Type="Int32" />
+    <Property Name="Session_Datetime" Type="DateTime" Precision="3" />
+    <Property Name="Session_Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Submitted" Type="Boolean" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <NavigationProperty Name="tbl_Case" Relationship="vt_LHRLAModel.FK_tbl_Councelling_Sessions_tbl_Case" FromRole="tbl_Councelling_Sessions" ToRole="tbl_Case" />
+  </EntityType>
+  <EntityType Name="tbl_Email_Setup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email_Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <Property Name="Email_Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email_CC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_Email_Users" Relationship="vt_LHRLAModel.FK_tbl_Email_Users_tbl_Email_Setup" FromRole="tbl_Email_Setup" ToRole="tbl_Email_Users" />
+  </EntityType>
+  <EntityType Name="tbl_Email_Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email_Setup_ID" Type="Int32" Nullable="false" />
+    <Property Name="User_ID" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="tbl_Email_Setup" Relationship="vt_LHRLAModel.FK_tbl_Email_Users_tbl_Email_Setup" FromRole="tbl_Email_Users" ToRole="tbl_Email_Setup" />
+    <NavigationProperty Name="tbl_User" Relationship="vt_LHRLAModel.FK_tbl_Email_Users_tbl_User" FromRole="tbl_Email_Users" ToRole="tbl_User" />
+  </EntityType>
+  <EntityType Name="tbl_Meetings">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Start_Datetime" Type="DateTime" Precision="3" />
+    <Property Name="End_Datetime" Type="DateTime" Precision="3" />
+    <Property Name="Location_Descp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City_Id" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Followup_Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Participants_Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Case_ID" Type="Int32" />
+    <Property Name="Meeting_Initiated_By" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="tbl_City" Relationship="vt_LHRLAModel.FK_tbl_Meetings_tbl_Case" FromRole="tbl_Meetings" ToRole="tbl_City" />
+  </EntityType>
+  <EntityType Name="tbl_Pages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <Property Name="Section_ID" Type="Int32" />
+    <Property Name="MenuDisplay" Type="Boolean" />
+    <NavigationProperty Name="tbl_Section" Relationship="vt_LHRLAModel.FK_tbl_Pages_tbl_Section" FromRole="tbl_Pages" ToRole="tbl_Section" />
+    <NavigationProperty Name="tbl_Role_Pages" Relationship="vt_LHRLAModel.FK_tbl_Role_Pages_tbl_Pages" FromRole="tbl_Pages" ToRole="tbl_Role_Pages" />
+  </EntityType>
+  <EntityType Name="tbl_Referral_Agency">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Contact_Details" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <NavigationProperty Name="tbl_Role_Pages" Relationship="vt_LHRLAModel.FK_tbl_Role_Pages_tbl_Role" FromRole="tbl_Role" ToRole="tbl_Role_Pages" />
+    <NavigationProperty Name="tbl_User" Relationship="vt_LHRLAModel.FK_tbl_User_tbl_Role" FromRole="tbl_Role" ToRole="tbl_User" />
+  </EntityType>
+  <EntityType Name="tbl_Role_Pages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Role_ID" Type="Int32" Nullable="false" />
+    <Property Name="Page_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Pages" Relationship="vt_LHRLAModel.FK_tbl_Role_Pages_tbl_Pages" FromRole="tbl_Role_Pages" ToRole="tbl_Pages" />
+    <NavigationProperty Name="tbl_Role" Relationship="vt_LHRLAModel.FK_tbl_Role_Pages_tbl_Role" FromRole="tbl_Role_Pages" ToRole="tbl_Role" />
+  </EntityType>
+  <EntityType Name="tbl_Section">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <NavigationProperty Name="tbl_Pages" Relationship="vt_LHRLAModel.FK_tbl_Pages_tbl_Section" FromRole="tbl_Section" ToRole="tbl_Pages" />
+  </EntityType>
+  <EntityType Name="tbl_Tags_Setup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tag_Value" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Tag_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <NavigationProperty Name="tbl_Case_Tags" Relationship="vt_LHRLAModel.FK_tbl_Case_Tags_tbl_Tags_Setup" FromRole="tbl_Tags_Setup" ToRole="tbl_Case_Tags" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role_ID" Type="Int32" />
+    <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="City_ID" Type="Int32" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <Property Name="Supervisor_ID" Type="Int32" />
+    <NavigationProperty Name="tbl_City" Relationship="vt_LHRLAModel.FK_tbl_User_tbl_User" FromRole="tbl_User" ToRole="tbl_City" />
+    <NavigationProperty Name="tbl_Email_Users" Relationship="vt_LHRLAModel.FK_tbl_Email_Users_tbl_User" FromRole="tbl_User" ToRole="tbl_Email_Users" />
+    <NavigationProperty Name="tbl_Role" Relationship="vt_LHRLAModel.FK_tbl_User_tbl_Role" FromRole="tbl_User" ToRole="tbl_Role" />
+    <NavigationProperty Name="tbl_User_Branch" Relationship="vt_LHRLAModel.FK_tbl_User_Branch_tbl_User" FromRole="tbl_User" ToRole="tbl_User_Branch" />
+  </EntityType>
+  <EntityType Name="tbl_User_Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_ID" Type="Int64" Nullable="false" />
+    <Property Name="Branch_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Branch" Relationship="vt_LHRLAModel.FK_tbl_User_Branch_tbl_Branch" FromRole="tbl_User_Branch" ToRole="tbl_Branch" />
+    <NavigationProperty Name="tbl_User" Relationship="vt_LHRLAModel.FK_tbl_User_Branch_tbl_User" FromRole="tbl_User_Branch" ToRole="tbl_User" />
+  </EntityType>
+  <EntityType Name="tbl_UserLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Entity_Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Entity_ID" Type="Int32" />
+    <Property Name="Action_Timestamp" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Action_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Action_User_ID" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_tbl_Case_tbl_Branch">
+    <End Type="vt_LHRLAModel.tbl_Branch" Role="tbl_Branch" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case" Role="tbl_Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_case_temp_tbl_Branch">
+    <End Type="vt_LHRLAModel.tbl_Branch" Role="tbl_Branch" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_case_temp" Role="tbl_case_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_case_temp">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_User_Branch_tbl_Branch">
+    <End Type="vt_LHRLAModel.tbl_Branch" Role="tbl_Branch" Multiplicity="1" />
+    <End Type="vt_LHRLAModel.tbl_User_Branch" Role="tbl_User_Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_User_Branch">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Calls_tbl_City">
+    <End Type="vt_LHRLAModel.tbl_City" Role="tbl_City" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Calls" Role="tbl_Calls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Calls">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Data_tbl_Case_Fields">
+    <End Type="vt_LHRLAModel.tbl_Case" Role="tbl_Case" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case_Data" Role="tbl_Case_Data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Data">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Data_temp_tbl_Case">
+    <End Type="vt_LHRLAModel.tbl_Case" Role="tbl_Case" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case_Data_temp" Role="tbl_Case_Data_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Data_temp">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_History_Log_tbl_Case">
+    <End Type="vt_LHRLAModel.tbl_Case" Role="tbl_Case" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case_History_Log" Role="tbl_Case_History_Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_History_Log">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Referral_tbl_Case">
+    <End Type="vt_LHRLAModel.tbl_Case" Role="tbl_Case" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case_Referral" Role="tbl_Case_Referral" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Referral">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Tags_tbl_Case">
+    <End Type="vt_LHRLAModel.tbl_Case" Role="tbl_Case" Multiplicity="1" />
+    <End Type="vt_LHRLAModel.tbl_Case_Tags" Role="tbl_Case_Tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Tags">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_tbl_Case_Types">
+    <End Type="vt_LHRLAModel.tbl_Case_Types" Role="tbl_Case_Types" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case" Role="tbl_Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Types">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case">
+        <PropertyRef Name="Case_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_tbl_Case_Types1">
+    <End Type="vt_LHRLAModel.tbl_Case_Registeration_Types" Role="tbl_Case_Registeration_Types" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case" Role="tbl_Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Registeration_Types">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case">
+        <PropertyRef Name="Case_Registeration_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_case_temp_tbl_Case">
+    <End Type="vt_LHRLAModel.tbl_Case" Role="tbl_Case" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_case_temp" Role="tbl_case_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_case_temp">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Councelling_Sessions_tbl_Case">
+    <End Type="vt_LHRLAModel.tbl_Case" Role="tbl_Case" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Councelling_Sessions" Role="tbl_Councelling_Sessions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Councelling_Sessions">
+        <PropertyRef Name="Case_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Data_tbl_Case_Fields1">
+    <End Type="vt_LHRLAModel.tbl_Case_Fields" Role="tbl_Case_Fields" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case_Data" Role="tbl_Case_Data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Fields">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Data">
+        <PropertyRef Name="Case_Field_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Data_temp_tbl_Case_Fields">
+    <End Type="vt_LHRLAModel.tbl_Case_Fields" Role="tbl_Case_Fields" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case_Data_temp" Role="tbl_Case_Data_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Fields">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Data_temp">
+        <PropertyRef Name="Case_Field_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Data_temp_tbl_Case_History_Log">
+    <End Type="vt_LHRLAModel.tbl_Case_History_Log" Role="tbl_Case_History_Log" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case_Data_temp" Role="tbl_Case_Data_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_History_Log">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Data_temp">
+        <PropertyRef Name="CaseHistoryLogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Fields_Options_tbl_Case_Fields">
+    <End Type="vt_LHRLAModel.tbl_Case_Fields" Role="tbl_Case_Fields" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case_Fields_Options" Role="tbl_Case_Fields_Options" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Fields">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Fields_Options">
+        <PropertyRef Name="Case_Field_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Fields_tbl_Case_Fields_Section">
+    <End Type="vt_LHRLAModel.tbl_Case_Fields_Section" Role="tbl_Case_Fields_Section" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case_Fields" Role="tbl_Case_Fields" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Fields_Section">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Fields">
+        <PropertyRef Name="Case_Field_Section_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_case_temp_tbl_Case_History_Log">
+    <End Type="vt_LHRLAModel.tbl_Case_History_Log" Role="tbl_Case_History_Log" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_case_temp" Role="tbl_case_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_History_Log">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_case_temp">
+        <PropertyRef Name="CaseHistoryLogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_case_temp_tbl_Case_Registeration_Types">
+    <End Type="vt_LHRLAModel.tbl_Case_Registeration_Types" Role="tbl_Case_Registeration_Types" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_case_temp" Role="tbl_case_temp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Registeration_Types">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_case_temp">
+        <PropertyRef Name="Case_Registeration_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Types_tbl_Case_Sub_Types">
+    <End Type="vt_LHRLAModel.tbl_Case_Sub_Types" Role="tbl_Case_Sub_Types" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Case_Types" Role="tbl_Case_Types" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Case_Sub_Types">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Types">
+        <PropertyRef Name="Case_Sub_Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Case_Tags_tbl_Tags_Setup">
+    <End Type="vt_LHRLAModel.tbl_Tags_Setup" Role="tbl_Tags_Setup" Multiplicity="1" />
+    <End Type="vt_LHRLAModel.tbl_Case_Tags" Role="tbl_Case_Tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Tags_Setup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Case_Tags">
+        <PropertyRef Name="Tag_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Meetings_tbl_Case">
+    <End Type="vt_LHRLAModel.tbl_City" Role="tbl_City" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Meetings" Role="tbl_Meetings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Meetings">
+        <PropertyRef Name="City_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_User_tbl_User">
+    <End Type="vt_LHRLAModel.tbl_City" Role="tbl_City" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_User" Role="tbl_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_User">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Email_Users_tbl_Email_Setup">
+    <End Type="vt_LHRLAModel.tbl_Email_Setup" Role="tbl_Email_Setup" Multiplicity="1" />
+    <End Type="vt_LHRLAModel.tbl_Email_Users" Role="tbl_Email_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Email_Setup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Email_Users">
+        <PropertyRef Name="Email_Setup_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Email_Users_tbl_User">
+    <End Type="vt_LHRLAModel.tbl_User" Role="tbl_User" Multiplicity="1" />
+    <End Type="vt_LHRLAModel.tbl_Email_Users" Role="tbl_Email_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Email_Users">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Pages_tbl_Section">
+    <End Type="vt_LHRLAModel.tbl_Section" Role="tbl_Section" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_Pages" Role="tbl_Pages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Section">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Pages">
+        <PropertyRef Name="Section_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Role_Pages_tbl_Pages">
+    <End Type="vt_LHRLAModel.tbl_Pages" Role="tbl_Pages" Multiplicity="1" />
+    <End Type="vt_LHRLAModel.tbl_Role_Pages" Role="tbl_Role_Pages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Pages">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Role_Pages">
+        <PropertyRef Name="Page_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Role_Pages_tbl_Role">
+    <End Type="vt_LHRLAModel.tbl_Role" Role="tbl_Role" Multiplicity="1" />
+    <End Type="vt_LHRLAModel.tbl_Role_Pages" Role="tbl_Role_Pages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Role_Pages">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_User_tbl_Role">
+    <End Type="vt_LHRLAModel.tbl_Role" Role="tbl_Role" Multiplicity="0..1" />
+    <End Type="vt_LHRLAModel.tbl_User" Role="tbl_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_User">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_User_Branch_tbl_User">
+    <End Type="vt_LHRLAModel.tbl_User" Role="tbl_User" Multiplicity="1" />
+    <End Type="vt_LHRLAModel.tbl_User_Branch" Role="tbl_User_Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_User_Branch">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

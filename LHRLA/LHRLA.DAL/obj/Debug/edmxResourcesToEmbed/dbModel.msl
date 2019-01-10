@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="vt_LHRLAModelStoreContainer" CdmEntityContainer="vt_LHRLAEntities">
+    <FunctionImportMapping FunctionImportName="sp_AddUserLog" FunctionName="vt_LHRLAModel.Store.sp_AddUserLog" />
+    <EntitySetMapping Name="tbl_Branch">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Branch">
+        <MappingFragment StoreEntitySet="tbl_Branch">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Call_Operators">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Call_Operators">
+        <MappingFragment StoreEntitySet="tbl_Call_Operators">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Calls">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Calls">
+        <MappingFragment StoreEntitySet="tbl_Calls">
+          <ScalarProperty Name="Operator_Descp" ColumnName="Operator_Descp" />
+          <ScalarProperty Name="Is_Received" ColumnName="Is_Received" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+          <ScalarProperty Name="Caller_Latitude" ColumnName="Caller_Latitude" />
+          <ScalarProperty Name="Caller_Longitude" ColumnName="Caller_Longitude" />
+          <ScalarProperty Name="Call_Duration_In_Mins" ColumnName="Call_Duration_In_Mins" />
+          <ScalarProperty Name="Call_End_DateTime" ColumnName="Call_End_DateTime" />
+          <ScalarProperty Name="Call_Start_DateTime" ColumnName="Call_Start_DateTime" />
+          <ScalarProperty Name="Operator_ID" ColumnName="Operator_ID" />
+          <ScalarProperty Name="Caller_Name" ColumnName="Caller_Name" />
+          <ScalarProperty Name="Caller_Number" ColumnName="Caller_Number" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case">
+        <MappingFragment StoreEntitySet="tbl_Case">
+          <ScalarProperty Name="CounselorId" ColumnName="CounselorId" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="Followup_Date" ColumnName="Followup_Date" />
+          <ScalarProperty Name="Client_CNIC" ColumnName="Client_CNIC" />
+          <ScalarProperty Name="Client_Contact" ColumnName="Client_Contact" />
+          <ScalarProperty Name="Client_Name" ColumnName="Client_Name" />
+          <ScalarProperty Name="Approval_Level" ColumnName="Approval_Level" />
+          <ScalarProperty Name="Case_Reference_Person" ColumnName="Case_Reference_Person" />
+          <ScalarProperty Name="Linked_Case_ID" ColumnName="Linked_Case_ID" />
+          <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
+          <ScalarProperty Name="Current_Status_ID" ColumnName="Current_Status_ID" />
+          <ScalarProperty Name="Is_Submitted" ColumnName="Is_Submitted" />
+          <ScalarProperty Name="Attachment_Count" ColumnName="Attachment_Count" />
+          <ScalarProperty Name="Case_Registeration_Type_Id" ColumnName="Case_Registeration_Type_Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="Case_Type_Id" ColumnName="Case_Type_Id" />
+          <ScalarProperty Name="Case_DateTime" ColumnName="Case_DateTime" />
+          <ScalarProperty Name="Case_Code" ColumnName="Case_Code" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_Data">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_Data">
+        <MappingFragment StoreEntitySet="tbl_Case_Data">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Field_Value" ColumnName="Field_Value" />
+          <ScalarProperty Name="Case_ID" ColumnName="Case_ID" />
+          <ScalarProperty Name="Case_Field_ID" ColumnName="Case_Field_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_Data_temp">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_Data_temp">
+        <MappingFragment StoreEntitySet="tbl_Case_Data_temp">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Field_Value" ColumnName="Field_Value" />
+          <ScalarProperty Name="Case_ID" ColumnName="Case_ID" />
+          <ScalarProperty Name="Case_Field_ID" ColumnName="Case_Field_ID" />
+          <ScalarProperty Name="CaseHistoryLogID" ColumnName="CaseHistoryLogID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_Fields">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_Fields">
+        <MappingFragment StoreEntitySet="tbl_Case_Fields">
+          <ScalarProperty Name="Is_Hidden" ColumnName="Is_Hidden" />
+          <ScalarProperty Name="Is_Encrypted" ColumnName="Is_Encrypted" />
+          <ScalarProperty Name="Case_Field_Section_ID" ColumnName="Case_Field_Section_ID" />
+          <ScalarProperty Name="Is_Visible_On_App" ColumnName="Is_Visible_On_App" />
+          <ScalarProperty Name="Is_Mandatory" ColumnName="Is_Mandatory" />
+          <ScalarProperty Name="Sequence_No" ColumnName="Sequence_No" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Field_Type" ColumnName="Field_Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_Fields_Options">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_Fields_Options">
+        <MappingFragment StoreEntitySet="tbl_Case_Fields_Options">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Case_Field_ID" ColumnName="Case_Field_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_Fields_Section">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_Fields_Section">
+        <MappingFragment StoreEntitySet="tbl_Case_Fields_Section">
+          <ScalarProperty Name="Sequence_No" ColumnName="Sequence_No" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_History_Log">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_History_Log">
+        <MappingFragment StoreEntitySet="tbl_Case_History_Log">
+          <ScalarProperty Name="Approval2_Comments" ColumnName="Approval2_Comments" />
+          <ScalarProperty Name="Approval2_Datetime" ColumnName="Approval2_Datetime" />
+          <ScalarProperty Name="Approval2_User" ColumnName="Approval2_User" />
+          <ScalarProperty Name="Approval1_Comments" ColumnName="Approval1_Comments" />
+          <ScalarProperty Name="Approval1_Datetime" ColumnName="Approval1_Datetime" />
+          <ScalarProperty Name="Approval1_User" ColumnName="Approval1_User" />
+          <ScalarProperty Name="New_Data" ColumnName="New_Data" />
+          <ScalarProperty Name="Old_Data" ColumnName="Old_Data" />
+          <ScalarProperty Name="Case_ID" ColumnName="Case_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_Referral">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_Referral">
+        <MappingFragment StoreEntitySet="tbl_Case_Referral">
+          <ScalarProperty Name="Agency_Role_Description" ColumnName="Agency_Role_Description" />
+          <ScalarProperty Name="Agency_ID" ColumnName="Agency_ID" />
+          <ScalarProperty Name="Case_ID" ColumnName="Case_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_Registeration_Types">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_Registeration_Types">
+        <MappingFragment StoreEntitySet="tbl_Case_Registeration_Types">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_Status">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_Status">
+        <MappingFragment StoreEntitySet="tbl_Case_Status">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_Sub_Types">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_Sub_Types">
+        <MappingFragment StoreEntitySet="tbl_Case_Sub_Types">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_Tags">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_Tags">
+        <MappingFragment StoreEntitySet="tbl_Case_Tags">
+          <ScalarProperty Name="Tag_ID" ColumnName="Tag_ID" />
+          <ScalarProperty Name="Case_ID" ColumnName="Case_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_case_temp">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_case_temp">
+        <MappingFragment StoreEntitySet="tbl_case_temp">
+          <ScalarProperty Name="CounselorId" ColumnName="CounselorId" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="Followup_Date" ColumnName="Followup_Date" />
+          <ScalarProperty Name="Client_CNIC" ColumnName="Client_CNIC" />
+          <ScalarProperty Name="Client_Contact" ColumnName="Client_Contact" />
+          <ScalarProperty Name="Client_Name" ColumnName="Client_Name" />
+          <ScalarProperty Name="Approval_Level" ColumnName="Approval_Level" />
+          <ScalarProperty Name="Case_Reference_Person" ColumnName="Case_Reference_Person" />
+          <ScalarProperty Name="Linked_Case_ID" ColumnName="Linked_Case_ID" />
+          <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
+          <ScalarProperty Name="Current_Status_ID" ColumnName="Current_Status_ID" />
+          <ScalarProperty Name="Is_Submitted" ColumnName="Is_Submitted" />
+          <ScalarProperty Name="Attachment_Count" ColumnName="Attachment_Count" />
+          <ScalarProperty Name="Case_Registeration_Type_Id" ColumnName="Case_Registeration_Type_Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="Case_Type_Id" ColumnName="Case_Type_Id" />
+          <ScalarProperty Name="Case_DateTime" ColumnName="Case_DateTime" />
+          <ScalarProperty Name="Case_Code" ColumnName="Case_Code" />
+          <ScalarProperty Name="CaseHistoryLogID" ColumnName="CaseHistoryLogID" />
+          <ScalarProperty Name="Case_ID" ColumnName="Case_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Case_Types">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Case_Types">
+        <MappingFragment StoreEntitySet="tbl_Case_Types">
+          <ScalarProperty Name="Case_Sub_Type_ID" ColumnName="Case_Sub_Type_ID" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_City">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_City">
+        <MappingFragment StoreEntitySet="tbl_City">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Short_Code" ColumnName="Short_Code" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Councelling_Sessions">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Councelling_Sessions">
+        <MappingFragment StoreEntitySet="tbl_Councelling_Sessions">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Is_Submitted" ColumnName="Is_Submitted" />
+          <ScalarProperty Name="Session_Details" ColumnName="Session_Details" />
+          <ScalarProperty Name="Session_Datetime" ColumnName="Session_Datetime" />
+          <ScalarProperty Name="Session_Duration_In_Mins" ColumnName="Session_Duration_In_Mins" />
+          <ScalarProperty Name="Counceller_ID" ColumnName="Counceller_ID" />
+          <ScalarProperty Name="Case_ID" ColumnName="Case_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Email_Setup">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Email_Setup">
+        <MappingFragment StoreEntitySet="tbl_Email_Setup">
+          <ScalarProperty Name="Email_CC" ColumnName="Email_CC" />
+          <ScalarProperty Name="Email_Subject" ColumnName="Email_Subject" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Email_Body" ColumnName="Email_Body" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Email_Users">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Email_Users">
+        <MappingFragment StoreEntitySet="tbl_Email_Users">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Email_Setup_ID" ColumnName="Email_Setup_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Meetings">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Meetings">
+        <MappingFragment StoreEntitySet="tbl_Meetings">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Meeting_Initiated_By" ColumnName="Meeting_Initiated_By" />
+          <ScalarProperty Name="Case_ID" ColumnName="Case_ID" />
+          <ScalarProperty Name="Participants_Details" ColumnName="Participants_Details" />
+          <ScalarProperty Name="Followup_Notes" ColumnName="Followup_Notes" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="Location_Descp" ColumnName="Location_Descp" />
+          <ScalarProperty Name="End_Datetime" ColumnName="End_Datetime" />
+          <ScalarProperty Name="Start_Datetime" ColumnName="Start_Datetime" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Pages">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Pages">
+        <MappingFragment StoreEntitySet="tbl_Pages">
+          <ScalarProperty Name="MenuDisplay" ColumnName="MenuDisplay" />
+          <ScalarProperty Name="Section_ID" ColumnName="Section_ID" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Referral_Agency">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Referral_Agency">
+        <MappingFragment StoreEntitySet="tbl_Referral_Agency">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Contact_Details" ColumnName="Contact_Details" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Role">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Role">
+        <MappingFragment StoreEntitySet="tbl_Role">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Role_Pages">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Role_Pages">
+        <MappingFragment StoreEntitySet="tbl_Role_Pages">
+          <ScalarProperty Name="Page_ID" ColumnName="Page_ID" />
+          <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Section">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Section">
+        <MappingFragment StoreEntitySet="tbl_Section">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Tags_Setup">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_Tags_Setup">
+        <MappingFragment StoreEntitySet="tbl_Tags_Setup">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Tag_Description" ColumnName="Tag_Description" />
+          <ScalarProperty Name="Tag_Value" ColumnName="Tag_Value" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_User">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_User">
+        <MappingFragment StoreEntitySet="tbl_User">
+          <ScalarProperty Name="Supervisor_ID" ColumnName="Supervisor_ID" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="User_Password" ColumnName="User_Password" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_User_Branch">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_User_Branch">
+        <MappingFragment StoreEntitySet="tbl_User_Branch">
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_UserLog">
+      <EntityTypeMapping TypeName="vt_LHRLAModel.tbl_UserLog">
+        <MappingFragment StoreEntitySet="tbl_UserLog">
+          <ScalarProperty Name="Action_User_ID" ColumnName="Action_User_ID" />
+          <ScalarProperty Name="Action_Name" ColumnName="Action_Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Action_Timestamp" ColumnName="Action_Timestamp" />
+          <ScalarProperty Name="Entity_ID" ColumnName="Entity_ID" />
+          <ScalarProperty Name="Entity_Type" ColumnName="Entity_Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

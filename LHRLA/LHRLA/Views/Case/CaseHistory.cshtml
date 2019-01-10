@@ -1,0 +1,355 @@
+﻿@model LHRLA.DAL.tbl_Case_History_Log
+@{
+    ViewBag.Title = "CaseHistory";
+    var CaseDetails = ViewBag.CaseDetails as LHRLA.DAL.tbl_Case;
+    var CaseDynamicFieldsDetails = ViewBag.CaseDynamicFieldsDetails as List<LHRLA.Core.ViewModel.CaseDataVM>;
+    var CaseDynamicFieldsDetailsNew = ViewBag.CaseDynamicFieldsDetailsNew as List<LHRLA.Core.ViewModel.CaseDataVM>;
+    var CaseHistoryData = ViewBag.CaseHistoryData as LHRLA.Core.ViewModel.CaseDataHistoryVM;
+}
+
+@section scripts{
+    <script src="~/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('.m-select2').select2({
+            placeholder: "Select an option",
+            minimumResultsForSearch: 1 / 0
+        })
+    </script>
+    <script type="text/javascript">
+        $(function () {
+
+            //case sub category dropdown change event
+
+            debugger;
+            $('#btnApprove').on('click', function () {
+                var LogId = '@Model.ID';
+                var CaseId = '@Model.Case_ID';
+                debugger;
+
+                var url = '@Url.Action("ApproveCaseHistory", "Case")';
+                ajaxCall(url, { logId:LogId,CaseId:CaseId }, function (resp) {
+                    if (typeof (resp) === "object" && resp != null) {
+                        if (resp.IsSuccess) {
+                            alert("Success");
+                            location.reload();
+                        }
+                        else {
+                            alert('@LHRLA.Core.Helpers.CustomMessages.GenericErrorMessage');
+                        }
+                    }
+                }, function (fail) {
+                    alert("Failure");
+                }, function (err) {
+                    alert("Error");
+                    });
+            });
+
+            $('#btnReject').on('click', function () {
+                var LogId = '@Model.ID';
+                var CaseId = '@Model.Case_ID';
+                debugger;
+
+                var url = '@Url.Action("RejectCaseHistory", "Case")';
+                ajaxCall(url, { logId: LogId, CaseId: CaseId }, function (resp) {
+                    if (typeof (resp) === "object" && resp != null) {
+                        if (resp.IsSuccess) {
+                            alert("Success");
+                            location.reload();
+                        }
+                        else {
+                            alert('@LHRLA.Core.Helpers.CustomMessages.GenericErrorMessage');
+                        }
+                    }
+                }, function (fail) {
+                    alert("Failure");
+                }, function (err) {
+                    alert("Error");
+                });
+            });
+
+            });
+    </script>
+}
+
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="m-portlet m-portlet--tab">
+            <div class="m-portlet__head border-0">
+                
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                                <i class="la la-gear"></i>
+                            </span>
+                            <div>
+                                <h3 class="m-portlet__head-text pt-3">
+                                    Case Code : @CaseDetails.Case_Code
+                                </h3>
+                               </div>
+                            <div>
+                                <h3 class="m-portlet__head-text pt-3">
+                                    Date : @( CaseDetails.Case_DateTime == null ? string.Empty : CaseDetails.Case_DateTime.Value.ToString("dd/MMM/yyyy"))
+                                </h3>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+              
+                <div class="m-portlet__body">
+
+                    <div class="row">
+                        <div class="col-lg-6 text-center cstm-colum">
+    <h2 class="pb-4">Old Data</h2>
+    @if (CaseHistoryData.New_Case_Status == null && CaseHistoryData.New_Followup_Date == null
+                        && CaseHistoryData.New_Counselor == null)
+    {
+        <div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-4 col-form-label">
+                    Summary:
+                </label>
+                <div class="col-lg-8">
+
+                    <textarea type="text" class="form-control m-input" placeholder="Summary" rows="2" disabled>
+                        @CaseHistoryData.Summary
+                    </textarea>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-4 col-form-label">
+                    Description:
+                </label>
+                <div class="col-lg-8">
+
+                    <textarea type="text" class="form-control m-input" placeholder="of the printing and typesetting" rows="5" disabled>
+                        @CaseHistoryData.Description
+                    </textarea>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-4 col-form-label">
+                    Case Date:
+                </label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control m-input" value="@CaseHistoryData.Case_DateTime" disabled>
+                </div>
+            </div>
+
+
+            <div class="form-group m-form__group row">
+                <label class="col-lg-4 col-form-label">
+                    Branch:
+                </label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control m-input" value="@CaseHistoryData.Branch" disabled>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-4 col-form-label">
+                    Case Category:
+                </label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control m-input" value="@CaseHistoryData.Case_Type" disabled>
+                </div>
+            </div>
+            @foreach (var item in CaseDynamicFieldsDetails)
+            {
+                <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                        @item.FieldTitle:
+                    </label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control m-input" value="@item.Field_Value" disabled>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+                              
+
+                else if (CaseHistoryData.New_Case_Status != null)
+                {
+                                <div class="form-group m-form__group row">
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-4 col-form-label">
+                                            Case Status:
+                                        </label>
+                                        <div class="col-lg-8">
+                                            <input type = "text" class="form-control m-input" disabled value = @CaseHistoryData.Case_Status >
+                                          </div >
+                                      </div >
+                                  </div >
+                            }
+                            else if (CaseHistoryData.New_Followup_Date != null)
+                            {
+                                <div class="form-group m-form__group row">
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-4 col-form-label">
+                                            Followup Date:
+                                        </label>
+                                        <div class="col-lg-8">
+                                            <input type = "text" class="form-control m-input" disabled value = @CaseHistoryData.Followup_Date >
+
+
+                                          </div >
+
+
+                                      </div >
+
+
+                                  </div >
+                            }
+                            else if (CaseHistoryData.New_Counselor != null)
+                            {
+                                <div class="form-group m-form__group row">
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-4 col-form-label">
+                                            Counselor:
+                                        </label>
+                                        <div class="col-lg-8">
+                                            <input type = "text" class="form-control m-input" disabled value = @CaseHistoryData.Counselor >
+                                          </div >
+                                      </div >
+                                  </div >
+                            }
+    
+
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <h2 class="pb-4">New Data</h2>
+                            @if (CaseHistoryData.New_Case_Status == null && CaseHistoryData.New_Followup_Date == null
+                && CaseHistoryData.New_Counselor == null)
+                            {
+                                <div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-4 col-form-label">
+                                            Summary:
+                                        </label>
+                                        <div class="col-lg-8">
+
+                                            <textarea type="text" class="form-control m-input" placeholder="Summary" rows="2" disabled>
+                                                @CaseHistoryData.New_Summary
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-4 col-form-label">
+                                            Description:
+                                        </label>
+                                        <div class="col-lg-8">
+
+                                            <textarea type="text" class="form-control m-input" placeholder="of the printing and typesetting" rows="5" disabled>
+                                                @CaseHistoryData.New_Description
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-4 col-form-label">
+                                            Case Date:
+                                        </label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control m-input"  value="@CaseHistoryData.New_Case_DateTime" disabled>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-4 col-form-label">
+                                            Branch:
+                                        </label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control m-input" value="@CaseHistoryData.New_Branch" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-4 col-form-label">
+                                            Case Category:
+                                        </label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control m-input" value="@CaseHistoryData.New_Case_Type" disabled>
+                                        </div>
+                                    </div>
+                                    @foreach (var item2 in CaseDynamicFieldsDetailsNew)
+                                    {
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-4 col-form-label">
+                                                @item2.FieldTitle:
+                                            </label>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control m-input" value="@item2.Field_Value" disabled>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else if (CaseHistoryData.New_Case_Status != null)
+                            {
+                                <div  class="form-group m-form__group row">
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-4 col-form-label">
+                                            Case Status:
+                                        </label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control m-input" disabled value=@CaseHistoryData.New_Case_Status >
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (CaseHistoryData.New_Followup_Date != null)
+                            {
+                                <div class="form-group m-form__group row">
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-4 col-form-label">
+                                            Followup Date:
+                                        </label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control m-input" disabled value=@CaseHistoryData.New_Followup_Date>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (CaseHistoryData.New_Counselor != null)
+                            {
+                                <div class="form-group m-form__group row">
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-4 col-form-label">
+                                            Counselor:
+                                        </label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control m-input" disabled value=@CaseHistoryData.New_Counselor>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    
+                    
+                        <div class="m-portlet__foot m-portlet__foot--fit cstm-button-warp">
+                            <div class="m-form__actions  m--align-right">
+                                <button type="reset" class="btn btn-primary mr-3" id="btnApprove">
+                                    Approve
+                                </button>
+                                <button type="reset" class="btn btn-secondary" id="btnReject">
+                                    Reject
+                                </button>
+
+                            </div>
+                        </div>
+                    
+                    
+                    
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+    </div>
+
+</div>

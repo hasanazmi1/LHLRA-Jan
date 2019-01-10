@@ -1,0 +1,128 @@
+﻿@model List<LHRLA.Core.ViewModel.CaseVM>
+@{
+    ViewBag.Title = "Case List";
+}
+
+@section pagelevelcss{
+    <link href="~/assets/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section actionsMain{
+    <a href="index" class="btn btn-success m-btn m-btn--icon m-btn--wide">
+        <span>
+            <i class="la la-plus-circle"></i>
+            <span>
+                Add Case
+            </span>
+        </span>
+    </a>
+}
+
+@section scripts{
+    <script src="~/assets/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $('.datatableCustom').DataTable();
+    </script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="m-portlet m-portlet--tab">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            List
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <table class="table m-table m-table--head-separator-primary verticalAlignMiddle datatableCustom">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Code</th>
+                            <th>Summary</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Approval</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int a = 0;}
+                        @foreach (var item in Model)
+                        {
+                            a++;
+                            <tr>
+                                <td>@Html.Raw(a)</td>
+                                <td class="ellipsis">@item.Case_Code</td>
+                                <td class="ellipsis">@item.Summary</td>
+                                <td class="ellipsis">@item.Type</td>
+                                <td class="ellipsis">@item.Status</td>
+                                <td class="ellipsis">@(item.Approval_Level == 0 ? "Approved": "Pending")</td>
+                                <td class="ellipsis">@(item.Case_DateTime == null ? string.Empty : @item.Case_DateTime.Value.ToString("MM/dd/yyyy"))</td>
+                                <td>
+
+                                    <div class="dropdown float-right">
+                                        <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="la la-ellipsis-h"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end">
+                                            <!--<a href="@Url.Action("Index","Branch",new RouteValueDictionary(new { id = item.ID }))"
+                                                 class="cstm-editedbtn"> <i class="la la-edit"></i>  Edit</a>    
+                                            -->
+                                            
+                                            <a class="dropdown-item" href=@(item.Approval_Level==0? @Url.Action("Update","Case",new RouteValueDictionary(new { id = item.ID })):"#")>
+                                                <i class="la la-edit"></i> Edit
+                                            </a>
+
+                                            <a class="dropdown-item" href=@(item.Approval_Level==0? @Url.Action("CaseTransfer","Case",new RouteValueDictionary(new { id = item.ID })):"#")>
+                                                <i class="la la-exchange"></i> Transfer
+                                            </a>
+                                            <a class="dropdown-item" href=@(item.Approval_Level==0? @Url.Action("StatusUpdate","Case",new RouteValueDictionary(new { id = item.ID })):"#")>
+                                                <i class="la la-refresh"></i> Update Status
+                                            </a>
+                                            <a class="dropdown-item" href=@(item.Approval_Level==0? @Url.Action("FollowupUpdate","Case",new RouteValueDictionary(new { id = item.ID })):"#")>
+                                                <i class="la la-users"></i> Followup
+                                            </a>
+                                            <a class="dropdown-item" href=@(item.Approval_Level>0? @Url.Action("CaseHistory","Case",new RouteValueDictionary(new { id = item.ID })):"#")>
+                                                <i class="la la-users"></i> Approve
+                                            </a>
+                                            <a class="dropdown-item" href=@Url.Action("Index","Case",new RouteValueDictionary(new { id = item.ID }))>
+                                                <i class="la la-plus-circle"></i> Add Linked Case
+                                            </a>
+                                        </div>
+                                    </div>
+                               </td>
+                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-skin="dark" data-toggle="m-tooltip" data-placement="left" data-original-title="Edit">
+        <i class="la la-edit"></i>
+    </a>
+    <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-skin="dark" data-toggle="m-tooltip" data-placement="left" data-original-title="Transfer">
+        <i class="la la-exchange" style="margin-top: 2px;margin-left: -2px;"></i>
+    </a>
+    <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-skin="dark" data-toggle="m-tooltip" data-placement="left" data-original-title="Update Status">
+        <i class="la la-refresh"></i>
+    </a>
+    <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-skin="dark" data-toggle="m-tooltip" data-placement="left" data-original-title="Followup">
+        <i class="la la-users"></i>
+    </a>
+    <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-skin="dark" data-toggle="m-tooltip" data-placement="left" data-original-title="Add Linked Case">
+        <i class="la la-plus-circle"></i>
+    </a>*@

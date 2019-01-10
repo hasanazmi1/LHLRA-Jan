@@ -1,0 +1,1233 @@
+﻿@model LHRLA.DAL.tbl_Case_Fields
+@{
+    ViewBag.Title = "Field";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section pagelevelcss{
+    <style>
+        input.invalid, textarea.invalid, select.invalid {
+            background-color: #ffdddd;
+        }
+
+        label.invalid {
+            color: red;
+        }
+    </style>
+}
+
+@section scripts{
+    <script src="~/assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('.m-select2').select2({
+            placeholder: "Select an option",
+            minimumResultsForSearch: 1 / 0
+        })
+    </script>
+    <script>
+        //////// Cascading Dropdown/////////
+        $(document).ready(function () {
+            //$.validator.setDefaults({
+            //    ignore: [],
+            //})
+            //$('#btnCancel').on('click', function () {
+            //    var form = $("#FormSection");
+            //    form.validate().resetForm();
+
+            //});
+            $(function () {
+                debugger
+                $("form[name='Section']").validate({
+                    rules: {
+                        Name: {
+                            required: true
+
+                        }
+                    },
+                    messages: {
+                        Name: "*",
+
+                    },
+                    errorClass: "invalid",
+                    submitHandler: function (form) {
+                        form.submit();
+                    }
+                });
+            });
+
+            //$('#btnCancel2').on('click', function () {
+            //    var form = $("#FormField");
+            //    form.validate().resetForm();
+
+            //});
+            $(function () {
+                debugger
+                $("form[name='Field']").validate({
+                    rules: {
+                        Name: {
+                            required: true
+
+                        }
+
+                    },
+                    messages: {
+                        Name: "*",
+
+                    },
+                    errorClass: "invalid",
+                    submitHandler: function (form) {
+                        form.submit();
+                    }
+                });
+            });
+
+            debugger
+            var ID = $('#SectionID').val();
+            var ActiveId = $("#SectionType").val();
+            $("#SectionType").change(function () {
+                if ($("SectionType").val() != "") {
+                    if (ID == "0") {
+                        $('#CaseField').empty();
+
+                        //  $("#CaseType").val('0');
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetField", "CaseField")',
+                            dataType: 'json',
+                            data: { id: $("#SectionType").val() },
+                            success: function (mems) {
+                                // states contains the JSON formatted list
+                                // of states passed from the controller
+                                $.each(mems, function (i, member) {
+                                    $("#CaseField").append('<option value="'
+            + member.Value + '">'
+            + member.Text + '</option>');
+                                });
+                            },
+                            error: function (ex) {
+                                alert('Failed to retrieve states.' + ex);
+                            }
+                        });
+                        // return false;
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetSectionSequence", "CaseField")',
+                            dataType: 'json',
+                            data: { id: $("#SectionType").val() },
+                            success: function (mems) {
+                                // states contains the JSON formatted list
+                                // of states passed from the controller
+                                $.each(mems, function (i, member) {
+                                    $("#SequenceNo1").append('<option value="'
+            + member.Value + '">'
+            + member.Text + '</option>');
+                                });
+                            },
+                            error: function (ex) {
+                                alert('Failed to retrieve states.' + ex);
+                            }
+                        });
+
+                        debugger
+                        var url = '@Url.Action("GetActiveValuesOfCaseSection", "CaseField")';
+                        ajaxCall(url, {
+                            ID: ActiveId,
+                        }, function (resp) {
+                            // HideLoader();
+                            if (typeof (resp) === 'object') {
+                                if (resp.IsSuccess) {
+                                    if (resp.Is_Active == true) {
+                                        $('#chkIsActive').prop('checked', true);
+                                    }
+                                    else {
+                                        $('#chkIsActive').prop('checked', false)
+                                    }
+                                    //  alert(resp.ErrorMessage);
+                                    //location.reload();
+                                }
+
+                            }
+                        });
+                        // return false;
+                    }
+
+                    else {
+                        debugger
+                        $('#CaseField').empty();
+                        $("#Name1").val('');
+
+                        var ActiveId = $("#SectionType").val();
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetField", "CaseField")',
+                            dataType: 'json',
+                            data: {
+                                id: $("#SectionType").val(),
+
+                            },
+                            success: function (mems) {
+                                // states contains the JSON formatted list
+                                // of states passed from the controller
+                                $("#CaseField").append('<option value="'
+                    + "0" + '">'
+                  + 'Select Case Type' + '</option>');
+
+                                $.each(mems, function (i, member) {
+
+                                    $("#CaseField").append('<option value="'
+                           + member.Value + '">'
+                         + member.Text + '</option>');
+
+                                });
+                                if (ID != "0" && ID != "") {
+                                    debugger;
+                                    var id = $("#CaseFieldSectionHdn").val();
+                                    $("#CaseField").val(id);
+                                }
+
+                            },
+
+                            error: function (ex) {
+                                alert('Failed to retrieve states.' + ex);
+                            }
+                        });
+                        debugger
+                        var url = '@Url.Action("GetActiveValuesOfCaseSection", "CaseField")';
+                        ajaxCall(url, {
+                            ID: ActiveId,
+                        }, function (resp) {
+                            // HideLoader();
+                            if (typeof (resp) === 'object') {
+                                if (resp.IsSuccess) {
+                                    if (resp.Is_Active == true) {
+                                        $('#chkIsActive').prop('checked', true);
+                                    }
+                                    else {
+                                        $('#chkIsActive').prop('checked', false)
+                                    }
+                                    //  alert(resp.ErrorMessage);
+                                    //location.reload();
+                                }
+
+                            }
+                        });
+
+
+
+                        $("#SequenceNo1").empty();
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetSectionSequence", "CaseField")',
+                            dataType: 'json',
+                            data: { id: $("#SectionType").val() },
+                            success: function (mems) {
+                                // states contains the JSON formatted list
+                                // of states passed from the controller
+                                //               $("#CaseField").append('<option value="'
+                                //  + "0" + '">'
+                                //+ 'Select Case Type' + '</option>');
+                                $.each(mems, function (i, member) {
+                                    $("#SequenceNo1").append('<option value="'
+            + member.Value + '">'
+            + member.Text + '</option>');
+                                });
+                            },
+                            error: function (ex) {
+                                alert('Failed to retrieve states.' + ex);
+                            }
+                        });
+                        // debugger;
+
+                        //   return false;
+
+                    }
+                }
+                else {
+                    alert("Please select Section ")
+                }
+            })
+
+
+            ///////////////////////////////////////
+
+
+           
+
+
+            //// Get value
+
+            ////// Get options value on change of Field Section////
+            debugger
+            $("#CaseField").change(function () {
+                //  if (ID == "0") {
+                if ($("#CaseField").val() != "") {
+                    debugger
+                    $("#Name2").val('');
+                    $('.cstmmyul').empty();
+                    $('#SequenceNo2').empty();
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("GetOptionOnChangeField", "CaseField")',
+                        dataType: 'json',
+                        data: {
+                            id: $("#CaseField").val(),
+
+                        },
+                        success: function (mems) {
+                            // states contains the JSON formatted list
+                            // of states passed from the controller
+                            $.each(mems, function (i, member) {
+                                debugger;
+
+                                $("#myUL").append('<li class="Getoption cstmmyul xxxx" _id="' + member.Id + '" _value="' + member.Name + '/">' + member.Name + '</li>');
+                                ShowCloseButtonInList();
+                                HideCloseButtonInList();
+                            });
+                            if (ID != "0" && ID != "") {
+                                debugger;
+                                var id = $("#CaseFieldSectionHdn").val();
+                                $("#CaseField").val(id);
+                            }
+
+                        },
+
+
+                        error: function (ex) {
+                            alert('Failed to retrieve states.' + ex);
+                        }
+                    });
+
+
+                    debugger
+                    var ActiveId = $("#CaseField").val();
+                    var url = '@Url.Action("GetActiveValuesOfCaseField", "CaseField")';
+                    ajaxCall(url, {
+                        ID: ActiveId,
+                    }, function (resp) {
+                        // HideLoader();
+                        if (typeof (resp) === 'object') {
+                            if (resp.IsSuccess) {
+                                if (resp.Is_Active == true) {
+                                    $('#chkIs_Active2').prop('checked', true);
+                                }
+                                else {
+                                    $('#chkIs_Active2').prop('checked', false)
+                                }
+                                if (resp.Is_Encrypted == true) {
+                                    $('#chkIsEncrypted').prop('checked', true);
+                                }
+                                else {
+                                    $('#chkIsEncrypted').prop('checked', false)
+                                }
+                                if (resp.Is_Visible_On_App == true) {
+                                    $('#chkIsVisible').prop('checked', true);
+                                }
+                                else {
+                                    $('#chkIsVisible').prop('checked', false)
+                                }
+
+
+                                //  alert(resp.ErrorMessage);
+                                //location.reload();
+                            }
+
+                        }
+                    });
+
+
+                    ///// for Field Sequence //////
+                    if ($("#CaseField").val() != "") {
+                        $('#SequenceNo2').empty();
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GetFieldSequence", "CaseField")',
+                            dataType: 'json',
+                            data: { id: $("#CaseField").val() },
+                            success: function (mems) {
+                                // states contains the JSON formatted list
+                                // of states passed from the controller
+                                $.each(mems, function (i, member) {
+                                    $("#SequenceNo2").append('<option value="'
+            + member.Value + '">'
+            + member.Text + '</option>');
+                                });
+                            },
+                            error: function (ex) {
+                                alert('Failed to retrieve states.' + ex);
+                            }
+                        });
+                    }
+                    return false;
+
+                    ///// field sequence end /////////////
+
+                    // debugger;
+
+                    //   return false;
+
+                    //}
+                }
+                else {
+
+                    alert("Please select CaseField")
+                }
+            })
+
+            ////////////////////////////////////////
+        });
+
+
+
+    </script>
+    <script type="text/javascript">
+
+        $(document).on('click', '.btnOpenPopUp1', function () {
+
+            var SectionID = $('#SectionType').val();
+            var CaseID = $('#CaseField').val();
+            if ($("#SectionType").val() != "") {
+                $("#Name1").val('');
+                var Url = '@Url.Action("EditSection", "CaseField")';
+                ajaxCall(Url, { ID: SectionID }, function (resp) {
+                    $('#Name1').val(resp.result);
+
+                    // location.reload();
+                }, function (fail) {
+                    //  HideLoader();
+                    alert(fail.responseText);
+                    return false;
+                }, function (err) {
+                    // HideLoader();
+                    alert(err.responseText);
+                    return false;
+                });
+            }
+            else {
+                alert("Please select section first")
+            }
+        });
+
+
+
+        $(document).on('click', '.btnOpenPopUp2', function () {
+            var SectionID = $('#SectionType').val();
+            var CaseID = $('#CaseField').val();
+            if ($("#CaseField").val() != null) {
+                var Url = '@Url.Action("EditField", "CaseField")';
+                debugger;
+                ajaxCall(Url, { ID: CaseID }, function (resp) {
+
+                    $('#Name2').val(resp.result);
+                    // location.reload();
+                }, function (fail) {
+                    //  HideLoader();
+                    alert(fail.responseText);
+                    return false;
+                }, function (err) {
+                    // HideLoader();
+                    alert(err.responseText);
+                    return false;
+                });
+            }
+            else {
+                alert("Please select field first")
+            }
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).on('click', '#btnSave1', function (e) {
+            debugger
+
+            // var Id = '0';
+            //  if ($("#FormCase").valid()) {
+            var Is_Active = true;
+            if ($('#chkIsActive').is(":checked")) {
+                Is_Active = true;
+            }
+            else {
+                Is_Active = false;
+            }
+            Id = $('#SectionType').val();
+            var name = $('#Name1').val();
+
+            if ($("#FormSection").valid()) {
+
+                var url = '@Url.Action("AddUpdateSection", "CaseField")';
+
+
+
+                //ShowLoader();
+                e.preventDefault();
+                ajaxCall(url, {
+                    ID: Id, Name: name,
+                    Is_Active: Is_Active
+                }, function (resp) {
+                    // HideLoader();
+                    if (typeof (resp) === 'object') {
+                        if (resp.IsSuccess) {
+                            //$("#btnSave").attr('_id', 0);
+                            alert(resp.ErrorMessage);
+                            location.reload();
+                        }
+                        else {
+                            alert(resp.ErrorMessage);
+                        }
+                    }
+                }, function (fail) {
+                    console.log(fail.responseText);
+                    if (fail.responseText.indexOf("IsSuccess") >= 0) {
+                        alert(fail.responseJSON.ErrorMessage);
+                    }
+                    else {
+                        alert(genericMessage);
+                    }
+                    // HideLoader();
+                }, function (err) {
+                    console.log(err.responseText);
+                    if (err.responseText.indexOf("IsSuccess") >= 0) {
+                        alert(err.responseJSON.ErrorMessage);
+                    }
+                    else {
+                        alert(genericMessage);
+                    }
+                    // HideLoader();
+                });
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).on('click', '#btnSave2', function (e) {
+            debugger
+            var Is_Active2 = true;
+            if ($('#chkIs_Active2').is(":checked")) {
+                Is_Active2 = true;
+            }
+            else {
+                Is_Active2 = false;
+            }
+            var Is_Encrypted = true;
+            if ($('#chkIsEncrypted').is(":checked")) {
+                Is_Encrypted = true;
+            }
+            else {
+                Is_Encrypted = false;
+            }
+            var Is_Visible_On_App = true;
+            if ($('#chkIsVisible').is(":checked")) {
+                Is_Visible_On_App = true;
+            }
+            else {
+                Is_Visible_On_App = false;
+            }
+
+            var Idd = '0';
+            var CaseID = $('#CaseField').val();
+            var texxxt= $(".xxxx").map(function () { return $(this).attr("_value"); }).get();
+            var vlaues = "";
+            for (i = 0; i < texxxt.length; i++) {
+           
+                vlaues = vlaues + texxxt[i];
+            }
+            debugger;
+            //var Name = $(".xxxx").map(function () { return $(this).attr("_value"); }).get();
+            if ($("#FormField").valid()) {
+            var url = '@Url.Action("Save", "CaseField")';
+            //ShowLoader();
+            ajaxCall(url, {
+                ID: Idd, Name: vlaues,
+                Case_Field_ID: CaseID
+            }, function (resp) {
+                // HideLoader();
+                if (typeof (resp) === 'object') {
+                    if (resp.IsSuccess) {
+                        //$("#btnSave").attr('_id', 0);
+                        // alert(resp.ErrorMessage);
+                        // location.reload();
+                    }
+                    else {
+                        alert(resp.ErrorMessage);
+                    }
+                }
+            })
+
+            Id = $('#CaseField').val();
+            var Name = $('#Name2').val();
+            FkCase_Field_Section_ID = $('#SectionType').val();
+            var url = '@Url.Action("AddUpdateField", "CaseField")';
+            //ShowLoader();
+           
+                e.preventDefault();
+                ajaxCall(url, {
+                    ID: Id, Name: Name, Case_Field_Section_ID: FkCase_Field_Section_ID,
+                    Is_Active: Is_Active2,
+                    Is_Visible_On_App: Is_Visible_On_App,
+                    Is_Encrypted: Is_Encrypted
+                }, function (resp) {
+                    // HideLoader();
+                    if (typeof (resp) === 'object') {
+                        if (resp.IsSuccess) {
+                            //$("#btnSave").attr('_id', 0);
+                            alert(resp.ErrorMessage);
+                            location.reload();
+                        }
+                        else {
+                            alert(resp.ErrorMessage);
+                        }
+                    }
+                }, function (fail) {
+                    console.log(fail.responseText);
+                    if (fail.responseText.indexOf("IsSuccess") >= 0) {
+                        alert(fail.responseJSON.ErrorMessage);
+                    }
+                    else {
+                        alert(genericMessage);
+                    }
+                    // HideLoader();
+                }, function (err) {
+                    console.log(err.responseText);
+                    if (err.responseText.indexOf("IsSuccess") >= 0) {
+                        alert(err.responseJSON.ErrorMessage);
+                    }
+                    else {
+                        alert(genericMessage);
+                    }
+                    // HideLoader();
+                });
+            }
+        });
+    </script>
+}
+<style>
+
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="m-portlet m-portlet--tab mb-3">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            Details
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <!--begin::Form-->
+            <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" id="FormSection" name="Section">
+                <div class="m-portlet__body">
+                    <div class="form-group m-form__group row pt-2">
+
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row">
+                                @Html.HiddenFor(model => model.ID, new { @class = "form-control", @id = "SectionID" })
+                                @Html.HiddenFor(model => model.Case_Field_Section_ID, new { @class = "form-control", @id = "CaseFieldSectionHdn" })
+                                <input type="hidden" id="HdnValueOption" />
+                                <label class="col-lg-3 col-form-label">
+                                    Section:
+                                </label>
+                                <div class="col-lg-9">
+                                    @Html.DropDownListFor(model => model.tbl_Case_Fields_Section.ID, new SelectList(ViewBag.SectionList != null ? ViewBag.SectionList : "Select Section", "ID", "Name"), "Select Section", new { @class = "form-control", @id = "SectionType" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row">
+                                @*<a href="#" class="btn btn-secondary m-btn m-btn--icon">
+                                        <span>
+                                            <i class="la la-edit"></i>
+                                            <span>
+                                                Edit
+                                            </span>
+                                        </span>
+                                    </a>*@
+                                <button type="button" title="Edit" id="edit1" class="btn  btn-circle small-width green btnOpenPopUp1">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-3 col-form-label">
+                                    Section Name:
+                                </label>
+                                <div class="col-lg-9">
+                                    @*<input type="text" class="form-control m-input" placeholder="Section Name">*@
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Name", id = "Name1" })
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-3 col-form-label">
+                                    Sequence:
+                                </label>
+                                <div class="col-lg-9">
+                                    @Html.DropDownListFor(x => x.tbl_Case_Fields_Section.Sequence_No, new SelectList(new SelectList("", ""), "ID", "Sequence_No"), "Select Sequence Number", new { @class = "form-control", @id = "SequenceNo1" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-3 col-form-label">
+                                    Active:
+                                </label>
+                                <div class="col-lg-9">
+                                    @if (Model != null && Model.tbl_Case_Fields_Section.Is_Active == true)
+                                    { @Html.HiddenFor(model => model.tbl_Case_Fields_Section.Is_Active, new { @id = "Is_Active", @checked = "checked" })
+                                        <input type="checkbox" style="margin-top:5px" name="Is_Active" id="chkIsActive" checked="checked" />
+                                    }
+                                    else if (Model != null && Model.tbl_Case_Fields_Section.Is_Active == false)
+                                    {
+                                        <input type="checkbox" style="margin-top:5px" name="Is_Active" id="chkIsActive" />
+                                    }
+                                    else if (Model == null)
+                                    {
+                                        <input type="checkbox" style="margin-top:5px" name="Is_Active" id="chkIsActive" checked="checked" />
+                                    }
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions  m--align-right">
+                        <button type="submit" class="btn btn-primary" id="btnSave1" _id="@(Model != null ? Model.ID : 0)">
+                            Save
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            Cancel
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="m-portlet m-portlet--tab ">
+
+            <!--begin::Form-->
+            <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" id="FormField" name="Field">
+
+                <div class="m-portlet__body">
+
+                    <div class="form-group m-form__group row pt-2">
+
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-3 col-form-label">
+                                    Fields:
+                                </label>
+                                <div class="col-lg-9">
+                                    @Html.DropDownListFor(model => model.ID, new SelectList("", ""), "Select Case Fields", new { @class = "form-control", @id = "CaseField" })
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row">
+                                <button type="button" title="Edit" id="edit2" class="btn  btn-circle small-width green btnOpenPopUp2">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-3 col-form-label">
+                                    Field Title:
+                                </label>
+                                <div class="col-lg-9">
+                                    @*<input type="text" class="form-control m-input" placeholder="Field Title">*@
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Name", id = "Name2" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-3 col-form-label">
+                                    Sequence:
+                                </label>
+                                <div class="col-lg-9">
+
+                                    @Html.DropDownListFor(x => x.Sequence_No, new SelectList(new SelectList("", ""), "ID", "Sequence_No"), "Select Sequence Number", new { @class = "form-control", @id = "SequenceNo2" })
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-3 col-form-label">
+                                    Field Type:
+                                </label>
+                                <div class="col-lg-9">
+
+                                    <select class="form-control m-select2" id="ddlOption" name="param" onchange="java_script_: show(this.options[this.selectedIndex].value)">
+                                        <option></option>
+                                        <optgroup label="Case Category">
+                                            <option value="Field Type1">
+                                                Text
+                                            </option>
+                                            <option value="Field Type2">
+                                                Option
+                                            </option>
+
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-12">
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-3 row m-0">
+                                    <label class="col-lg-8 col-form-label">
+                                        Encypted:
+                                    </label>
+                                    <div class="col-lg-4 pl-0">
+                                        <label class="col-lg-3 col-form-label">
+                                            @*<input type="checkbox">*@
+
+                                            @*<span></span>*@
+                                            @if (Model != null && Model.Is_Encrypted == true)
+                                            { @Html.HiddenFor(model => model.Is_Encrypted, new { @id = "Is_Encrypted", @checked = "checked" })
+                                                <input type="checkbox" style="margin-top:5px" name="chkIsEncrypted" id="chkIsEncrypted" checked="checked" />
+                                            }
+                                            else if (Model != null && Model.Is_Encrypted == false)
+                                            {
+                                                <input type="checkbox" style="margin-top:5px" name="chkIsEncrypted" id="chkIsEncrypted" />
+                                            }
+                                            else if (Model == null)
+                                            {
+                                                <input type="checkbox" style="margin-top:5px" name="chkIsEncrypted" id="chkIsEncrypted" />
+                                            }
+
+                                        </label>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-3 row m-0">
+                                        <label class="col-lg-8 col-form-label">
+                                            Seewe Data:
+                                        </label>
+                                        <div class="col-lg-4 pl-0">
+                                            <label class="m-checkbox m-checkbox--state-brand">
+                                                <input type="checkbox">
+
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>*@
+
+                                <div class="col-lg-3 row m-0">
+                                    <label class="col-lg-8 col-form-label">
+                                        Active:
+                                    </label>
+                                    <div class="col-lg-4 pl-0">
+                                        <label class="col-lg-3 col-form-label">
+                                            @*<input type="checkbox">
+
+                                                <span></span>*@
+                                            @if (Model != null && Model.Is_Active == true)
+                                            { @Html.HiddenFor(model => model.Is_Active, new { @id = "Is_Active2", @checked = "checked" })
+                                                <input type="checkbox" style="margin-top:5px" name="chkIs_Active2" id="chkIs_Active2" checked="checked" />
+                                            }
+                                            else if (Model != null && Model.Is_Active == false)
+                                            {
+                                                <input type="checkbox" style="margin-top:5px" name="chkIs_Active2" id="chkIs_Active2" />
+                                            }
+                                            else if (Model == null)
+                                            {
+                                                <input type="checkbox" style="margin-top:5px" name="chkIs_Active2" id="chkIs_Active2" checked="checked" />
+                                            }
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 row m-0">
+                                    <label class="col-lg-8 col-form-label">
+                                        App Visibility:
+                                    </label>
+                                    <div class="col-lg-4 pl-0">
+                                        <label class="col-lg-3 col-form-label">
+                                            @*<input type="checkbox">
+
+                                                <span></span>*@
+                                            @if (Model != null && Model.Is_Visible_On_App == true)
+                                            { @Html.HiddenFor(model => model.Is_Visible_On_App, new { @id = "Is_Visible_On_App", @checked = "checked" })
+                                                <input type="checkbox" style="margin-top:5px" name="chkIsVisible" id="chkIsVisible" checked="checked" />
+                                            }
+                                            else if (Model != null && Model.Is_Visible_On_App == false)
+                                            {
+                                                <input type="checkbox" style="margin-top:5px" name="chkIsVisible" id="chkIsVisible" />
+                                            }
+                                            else if (Model == null)
+                                            {
+                                                <input type="checkbox" style="margin-top:5px" name="chkIsVisible" id="chkIsVisible" checked="checked" />
+                                            }
+                                        </label>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div id="myDIV" class="header form-group m-form__group row">
+                                <label class="col-lg-3 col-form-label">
+                                    Add Option:
+                                </label>
+                                <div class="col-lg-9">
+                                    <input type="text" id="myInput" placeholder="Title..." class="form-control m-input">
+                                    <span onclick="newElement()" class="addBtn"><i class="la la-plus-circle"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul id="myUL">
+
+                        <li class="cstmmyul" _id=""></li>
+
+                        @*<li class="checked cstmmyul">Pay bills</li>
+                            <li class="cstmmyul">Meet George</li>
+                            <li class="cstmmyul">Buy eggs</li>
+                            <li class="cstmmyul">Read a book</li>*@
+
+
+
+                    </ul>
+                </div>
+
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions  m--align-right">
+                        <button type="submit" class="btn btn-primary" id="btnSave2" _id="@(Model != null ? Model.ID : 0)">
+                            Save
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            Cancel
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+
+
+
+
+
+        </div>
+    </div>
+
+</div>
+<script>
+
+    //function sendData() {
+    //    var items = [];
+    //    $("#myUL li").map(function () {
+    //        items.push(this.innerText);
+    //    });
+
+    //    $.ajax({
+    //        type: "POST",
+    //        data: {
+    //            list:  items
+    //        },
+    //        url: "/CaseField/NewShoppingList",
+    //        success: function (res) {
+
+    //        }
+    //    });
+
+
+
+
+    debugger
+    function show(aval) {
+        if (aval == "Field Type2") {
+            $("#myDIV").show();
+        }
+        else {
+            $("#myDIV").hide();
+        }
+    }
+    // Create a "close" button and append it to each list item
+
+    function ShowCloseButtonInList() {
+        debugger
+        var myNodelist = document.getElementsByClassName("cstmmyul");
+        var i;
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        for (i = 0; i < myNodelist.length; i++) {
+            myNodelist[i].appendChild(span);
+        }
+    }
+    // Click on a close button to hide the current list item
+    function Add() {
+        debugger
+        $('.cstmmyul').empty();
+        $('#SequenceNo2').empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetOptionOnChangeField", "CaseField")',
+            dataType: 'json',
+            data: {
+                id: $("#CaseField").val(),
+
+            },
+            success: function (mems) {
+                // states contains the JSON formatted list
+                // of states passed from the controller
+                $.each(mems, function (i, member) {
+                    debugger;
+
+                    $("#myUL").append('<li class="Getoption cstmmyul" _id="' + member.Id + '">' + member.Name + '</li>');
+                    ShowCloseButtonInList();
+                    HideCloseButtonInList();
+                });
+
+
+            },
+
+
+            error: function (ex) {
+                alert('Failed to retrieve states.' + ex);
+            }
+        });
+
+    }
+    debugger
+    function HideCloseButtonInList() {
+        debugger
+        var close = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++) {
+
+            //close[i].addEventListener( clickevent, function( ev ) {
+            close[i].onclick = function () {
+                debugger;
+                var id = "";
+                id = $(this.parentElement).attr('_id');
+                if (id != "") {
+                    var url = '@Url.Action("InActiveOption", "CaseField")';
+                    //ShowLoader();
+                    ajaxCall(url, {
+                        ID: id
+                    }, function (resp) {
+                        // HideLoader();
+                        if (typeof (resp) === 'object') {
+                            if (resp.IsSuccess) {
+                                //$("#btnSave").attr('_id', 0);
+                                // alert(resp.ErrorMessage);
+                                // location.reload();
+                            }
+                            else {
+                               // alert(resp.ErrorMessage);
+                            }
+                        }
+                    }
+                    //, function (fail) {
+                    //    console.log(fail.responseText);
+                    //    if (fail.responseText.indexOf("IsSuccess") >= 0) {
+                    //        alert(fail.responseJSON.ErrorMessage);
+                    //    }
+                    //    else {
+                    //        alert(genericMessage);
+                    //    }
+                    //    // HideLoader();
+                    //}, function (err) {
+                    //    console.log(err.responseText);
+                    //    if (err.responseText.indexOf("IsSuccess") >= 0) {
+                    //        alert(err.responseJSON.ErrorMessage);
+                    //    }
+                    //    else {
+                    //        alert(genericMessage);
+                    //    }
+                    //    // HideLoader();
+                    //}
+                    );
+
+                    //var div = this.parentElement;
+                    //div.style.display = "none";
+                    refresh();
+                }
+                else
+                
+                {
+                    var close = document.getElementsByClassName("close");
+                    for (i = 0; i < close.length; i++) {
+                        close[i].onclick = function () {
+                            alert(123)
+                            var div = this.parentElement;
+                            div.style.display = "none";
+                        }
+                    }
+                }
+            }
+            //)
+        }
+    }
+    function refresh() {
+        debugger
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetOptionOnChangeField", "CaseField")',
+            dataType: 'json',
+            data: {
+                id: $("#CaseField").val(),
+
+            },
+            success: function (mems) {
+                $("#myUL").empty();
+                // states contains the JSON formatted list
+                // of states passed from the controller
+                $.each(mems, function (i, member) {
+                    debugger;
+
+                    $("#myUL").append('<li class="Getoption cstmmyul xxxx" _id="' + member.Id + '" _value="' + member.Name + '/">' + member.Name + '</li>');
+                    ShowCloseButtonInList();
+                    HideCloseButtonInList();
+                });
+              
+
+            },
+
+
+            error: function (ex) {
+                alert('Failed to retrieve states.' + ex);
+            }
+        });
+    }
+
+    // Add a "checked" symbol when clicking on a list item
+    debugger
+    var list = document.querySelector('ul');
+    list.addEventListener('click', function (ev) {
+        if (ev.target.tagName === 'LI') {
+            ev.target.classList.toggle('checked');
+        }
+    }, false);
+
+
+    // Create a new list item when clicking on the "Add" button
+    function newElement() {
+
+
+
+
+        debugger
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+            alert("You must write something!");
+        } else {
+            document.getElementById("myUL").appendChild(li);
+        }
+        // if ($("#FormOption").valid()) {
+        var Id = '0';
+        var CaseID = $('#CaseField').val();
+        var Name = document.getElementById("myInput").value;
+        var texxxt= $(".xxxx").map(function () { return $(this).attr("_value"); }).get();
+        var vlaues = "";
+        for (i = 0; i < texxxt.length; i++) {
+           
+            vlaues = vlaues + texxxt[i];
+        }
+        debugger;
+        //var Name = $(".xxxx").map(function () { return $(this).attr("_value"); }).get();
+        var url = '@Url.Action("AddOption", "CaseField")';
+        //ShowLoader();
+        ajaxCall(url, {
+            ID: Id, Name: Name,
+            Case_Field_ID: CaseID
+        }, function (resp) {
+            // HideLoader();
+            if (typeof (resp) === 'object') {
+                if (resp.IsSuccess) {
+                    //$("#btnSave").attr('_id', 0);
+                    // alert(resp.ErrorMessage);
+                    // location.reload();
+                }
+                else {
+                    alert(resp.ErrorMessage);
+                }
+            }
+        }, function (fail) {
+            console.log(fail.responseText);
+            if (fail.responseText.indexOf("IsSuccess") >= 0) {
+                alert(fail.responseJSON.ErrorMessage);
+            }
+            else {
+                alert(genericMessage);
+            }
+            // HideLoader();
+        }, function (err) {
+            console.log(err.responseText);
+            if (err.responseText.indexOf("IsSuccess") >= 0) {
+                alert(err.responseJSON.ErrorMessage);
+            }
+            else {
+                alert(genericMessage);
+            }
+            // HideLoader();
+        });
+        // }
+        document.getElementById("myInput").value = "";
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        li.appendChild(span);
+        li.className = "xxxx";
+        li.setAttribute("_value",Name+'/');
+        //Add();
+        HideCloseButtonInList();
+        //for (i = 0; i < close.length; i++) {
+        //    close[i].onclick = function () {
+
+        //        var div = this.parentElement;
+        //        div.style.display = "none";
+        //    }
+        //}
+    }
+</script>
